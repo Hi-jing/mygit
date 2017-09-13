@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceshi.dao.Go_kindMapper">
+  <resultMap id="BaseResultMap" type="com.ceshi.bean.Go_kind">
+    <id column="ki_id" jdbcType="INTEGER" property="kiId" />
+    <result column="ki_goodid" jdbcType="INTEGER" property="kiGoodid" />
+    <result column="ki_name" jdbcType="VARCHAR" property="kiName" />
+    <result column="ki_nowprice" jdbcType="DOUBLE" property="kiNowprice" />
+    <result column="ki_preprice" jdbcType="DOUBLE" property="kiPreprice" />
+    <result column="ki_state" jdbcType="INTEGER" property="kiState" />
+    <result column="ki_addmoney" jdbcType="DOUBLE" property="kiAddmoney" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ki_id, ki_goodid, ki_name, ki_nowprice, ki_preprice, ki_state, ki_addmoney
+  </sql>
+  <select id="selectByExample" parameterType="com.ceshi.bean.Go_kindExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from go_kind
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from go_kind
+    where ki_id = #{kiId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from go_kind
+    where ki_id = #{kiId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ceshi.bean.Go_kindExample">
+    delete from go_kind
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ceshi.bean.Go_kind">
+    insert into go_kind (ki_id, ki_goodid, ki_name, 
+      ki_nowprice, ki_preprice, ki_state, 
+      ki_addmoney)
+    values (#{kiId,jdbcType=INTEGER}, #{kiGoodid,jdbcType=INTEGER}, #{kiName,jdbcType=VARCHAR}, 
+      #{kiNowprice,jdbcType=DOUBLE}, #{kiPreprice,jdbcType=DOUBLE}, #{kiState,jdbcType=INTEGER}, 
+      #{kiAddmoney,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ceshi.bean.Go_kind">
+    insert into go_kind
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="kiId != null">
+        ki_id,
+      </if>
+      <if test="kiGoodid != null">
+        ki_goodid,
+      </if>
+      <if test="kiName != null">
+        ki_name,
+      </if>
+      <if test="kiNowprice != null">
+        ki_nowprice,
+      </if>
+      <if test="kiPreprice != null">
+        ki_preprice,
+      </if>
+      <if test="kiState != null">
+        ki_state,
+      </if>
+      <if test="kiAddmoney != null">
+        ki_addmoney,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="kiId != null">
+        #{kiId,jdbcType=INTEGER},
+      </if>
+      <if test="kiGoodid != null">
+        #{kiGoodid,jdbcType=INTEGER},
+      </if>
+      <if test="kiName != null">
+        #{kiName,jdbcType=VARCHAR},
+      </if>
+      <if test="kiNowprice != null">
+        #{kiNowprice,jdbcType=DOUBLE},
+      </if>
+      <if test="kiPreprice != null">
+        #{kiPreprice,jdbcType=DOUBLE},
+      </if>
+      <if test="kiState != null">
+        #{kiState,jdbcType=INTEGER},
+      </if>
+      <if test="kiAddmoney != null">
+        #{kiAddmoney,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ceshi.bean.Go_kindExample" resultType="java.lang.Long">
+    select count(*) from go_kind
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update go_kind
+    <set>
+      <if test="record.kiId != null">
+        ki_id = #{record.kiId,jdbcType=INTEGER},
+      </if>
+      <if test="record.kiGoodid != null">
+        ki_goodid = #{record.kiGoodid,jdbcType=INTEGER},
+      </if>
+      <if test="record.kiName != null">
+        ki_name = #{record.kiName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kiNowprice != null">
+        ki_nowprice = #{record.kiNowprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.kiPreprice != null">
+        ki_preprice = #{record.kiPreprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.kiState != null">
+        ki_state = #{record.kiState,jdbcType=INTEGER},
+      </if>
+      <if test="record.kiAddmoney != null">
+        ki_addmoney = #{record.kiAddmoney,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update go_kind
+    set ki_id = #{record.kiId,jdbcType=INTEGER},
+      ki_goodid = #{record.kiGoodid,jdbcType=INTEGER},
+      ki_name = #{record.kiName,jdbcType=VARCHAR},
+      ki_nowprice = #{record.kiNowprice,jdbcType=DOUBLE},
+      ki_preprice = #{record.kiPreprice,jdbcType=DOUBLE},
+      ki_state = #{record.kiState,jdbcType=INTEGER},
+      ki_addmoney = #{record.kiAddmoney,jdbcType=DOUBLE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ceshi.bean.Go_kind">
+    update go_kind
+    <set>
+      <if test="kiGoodid != null">
+        ki_goodid = #{kiGoodid,jdbcType=INTEGER},
+      </if>
+      <if test="kiName != null">
+        ki_name = #{kiName,jdbcType=VARCHAR},
+      </if>
+      <if test="kiNowprice != null">
+        ki_nowprice = #{kiNowprice,jdbcType=DOUBLE},
+      </if>
+      <if test="kiPreprice != null">
+        ki_preprice = #{kiPreprice,jdbcType=DOUBLE},
+      </if>
+      <if test="kiState != null">
+        ki_state = #{kiState,jdbcType=INTEGER},
+      </if>
+      <if test="kiAddmoney != null">
+        ki_addmoney = #{kiAddmoney,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where ki_id = #{kiId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ceshi.bean.Go_kind">
+    update go_kind
+    set ki_goodid = #{kiGoodid,jdbcType=INTEGER},
+      ki_name = #{kiName,jdbcType=VARCHAR},
+      ki_nowprice = #{kiNowprice,jdbcType=DOUBLE},
+      ki_preprice = #{kiPreprice,jdbcType=DOUBLE},
+      ki_state = #{kiState,jdbcType=INTEGER},
+      ki_addmoney = #{kiAddmoney,jdbcType=DOUBLE}
+    where ki_id = #{kiId,jdbcType=INTEGER}
+  </update>
+</mapper>

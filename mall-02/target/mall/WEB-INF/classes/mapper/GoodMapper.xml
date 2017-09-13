@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceshi.dao.GoodMapper">
+	
+  <resultMap id="BaseResultMap" type="com.ceshi.bean.Good">
+    <id column="go_id" jdbcType="INTEGER" property="goId" />
+    <result column="go_type" jdbcType="VARCHAR" property="goType" />
+    <result column="go_name" jdbcType="VARCHAR" property="goName" />
+    <result column="go_looksum" jdbcType="INTEGER" property="goLooksum" />
+    <result column="go_buysum" jdbcType="INTEGER" property="goBuysum" />
+    <result column="go_total" jdbcType="INTEGER" property="goTotal" />
+  </resultMap>
+  
+  
+    <!--自定义-->
+  <resultMap id="AllShowResultMap" type="com.ceshi.bean.Good">
+    <id column="go_id" jdbcType="INTEGER" property="goId" />
+    <result column="go_name" jdbcType="VARCHAR" property="goName" />
+    
+    <!-- 指定联合查询的部门字段的封装 -->
+    <association property="go_kind" javaType="com.ceshi.bean.Go_kind">
+	    <result column="ki_nowprice" jdbcType="DOUBLE" property="kiNowprice" />
+    </association>
+    
+    <association property="go_pictureWithBLOBs" javaType="com.ceshi.bean.Go_pictureWithBLOBs">
+    	<result column="pi_hang" jdbcType="LONGVARBINARY" property="piHang" />
+	    <result column="pi_su" jdbcType="LONGVARBINARY" property="piSu" />
+	     <result column="pi_sl" jdbcType="LONGVARBINARY" property="piSl" />
+    </association>
+    
+
+  </resultMap>
+  
+
+   <!--自定义-->
+  <resultMap id="BuChaGoodResultMap" type="com.ceshi.bean.Good">
+    <id column="go_id" jdbcType="INTEGER" property="goId" />
+    <result column="go_name" jdbcType="VARCHAR" property="goName" />
+    
+    <!-- 指定联合查询的部门字段的封装 -->
+    <association property="go_paytype" javaType="com.ceshi.bean.Go_paytype">
+	     <result column="pt_name" jdbcType="INTEGER" property="ptName" />
+	      <result column="pt_needintegral" jdbcType="INTEGER" property="ptNeedintegral" />
+    </association>
+    
+    <association property="go_pictureWithBLOBs" javaType="com.ceshi.bean.Go_pictureWithBLOBs">
+	     <result column="pi_sl" jdbcType="LONGVARBINARY" property="piSl" />
+    </association>
+    
+    <association property="go_kind" javaType="com.ceshi.bean.Go_kind">
+	    <result column="ki_nowprice" jdbcType="DOUBLE" property="kiNowprice" />
+    </association>
+    
+
+  </resultMap>
+  
+  
+  <resultMap id="CheckZeroGoodResultMap" type="com.ceshi.bean.Good">
+	    <id column="go_id" jdbcType="INTEGER" property="goId" />
+	    <result column="go_type" jdbcType="VARCHAR" property="goType" />
+	    <result column="go_name" jdbcType="VARCHAR" property="goName" />
+	    <result column="go_looksum" jdbcType="INTEGER" property="goLooksum" />
+	    <result column="go_buysum" jdbcType="INTEGER" property="goBuysum" />
+	    <result column="go_total" jdbcType="INTEGER" property="goTotal" />
+    <association property="go_paytype" javaType="com.ceshi.bean.Go_paytype">
+	    <id column="pt_id" jdbcType="INTEGER" property="ptId" />
+	    <result column="pt_goodid" jdbcType="INTEGER" property="ptGoodid" />
+	    <result column="pt_name" jdbcType="INTEGER" property="ptName" />
+	    <result column="pt_needintegral" jdbcType="INTEGER" property="ptNeedintegral" />
+	    <result column="pt_startdate" jdbcType="VARCHAR" property="ptStartdate" />
+	    <result column="pt_overdate" jdbcType="VARCHAR" property="ptOverdate" />
+	    <result column="pt_addmoney" jdbcType="DOUBLE" property="ptAddmoney" />
+	    <result column="pt_msg" jdbcType="VARCHAR" property="ptMsg" />
+    </association>
+    
+    <association property="go_pictureWithBLOBs" javaType="com.ceshi.bean.Go_pictureWithBLOBs">
+    	<result column="pi_hang" jdbcType="LONGVARBINARY" property="piHang" />
+	    <result column="pi_su" jdbcType="LONGVARBINARY" property="piSu" />
+	    <result column="pi_sl" jdbcType="LONGVARBINARY" property="piSl" />
+	    <result column="pi_lb" jdbcType="LONGVARBINARY" property="piLb" />
+	    <result column="pi_detail" jdbcType="LONGVARBINARY" property="piDetail" />
+    </association>
+    
+    <association property="go_kind" javaType="com.ceshi.bean.Go_kind">
+    	<id column="ki_id" jdbcType="INTEGER" property="kiId" />
+	    <result column="ki_goodid" jdbcType="INTEGER" property="kiGoodid" />
+	    <result column="ki_name" jdbcType="VARCHAR" property="kiName" />
+	    <result column="ki_nowprice" jdbcType="DOUBLE" property="kiNowprice" />
+	    <result column="ki_preprice" jdbcType="DOUBLE" property="kiPreprice" />
+	    <result column="ki_state" jdbcType="INTEGER" property="kiState" />
+	    <result column="ki_addmoney" jdbcType="DOUBLE" property="kiAddmoney" />
+    </association>
+    
+
+  </resultMap>
+  
+  
+  
+   <resultMap id="BaseWithLikeResultMap" type="com.ceshi.bean.Good">
+	    <id column="go_id" jdbcType="INTEGER" property="goId" />
+	    <result column="go_name" jdbcType="VARCHAR" property="goName" />
+	    <result column="go_buysum" jdbcType="INTEGER" property="goBuysum" />
+    
+    <association property="go_pictureWithBLOBs" javaType="com.ceshi.bean.Go_pictureWithBLOBs">
+    	<result column="pi_hang" jdbcType="LONGVARBINARY" property="piHang" />
+    </association>
+    
+    <association property="go_kind" javaType="com.ceshi.bean.Go_kind">
+	    <result column="ki_nowprice" jdbcType="DOUBLE" property="kiNowprice" />
+    </association>
+    
+  </resultMap>
+  
+  
+  
+  <resultMap id="DetailsResultMap" type="com.ceshi.bean.Good">
+	    <id column="go_id" jdbcType="INTEGER" property="goId" />
+	    <result column="go_name" jdbcType="VARCHAR" property="goName" />
+	    <result column="go_buysum" jdbcType="INTEGER" property="goBuysum" />
+    <association property="go_paytype" javaType="com.ceshi.bean.Go_paytype">
+	    <result column="pt_name" jdbcType="INTEGER" property="ptName" />
+    </association>
+    
+    <association property="go_pictureWithBLOBs" javaType="com.ceshi.bean.Go_pictureWithBLOBs">
+    	<result column="pi_hang" jdbcType="LONGVARBINARY" property="piHang" />
+    	<result column="pi_detail" jdbcType="LONGVARBINARY" property="piDetail" />
+    </association>
+    
+    <association property="go_kind" javaType="com.ceshi.bean.Go_kind">
+	    <result column="ki_nowprice" jdbcType="DOUBLE" property="kiNowprice" />
+	    <result column="ki_preprice" jdbcType="DOUBLE" property="kiPreprice" />
+    </association>
+    
+
+  </resultMap>
+  
+  
+  
+  
+  
+  
+
+
+    <!-- List<Good> selectZeroGood();-->
+  
+  <select id="selectZeroGood" resultMap="CheckZeroGoodResultMap">
+	SELECT *
+	FROM good g 
+	LEFT JOIN go_kind k ON k.ki_goodid = g.go_id
+	LEFT JOIN go_paytype p on p.pt_goodid = g.go_id
+	LEFT JOIN go_picture pi ON pi.pi_goodid = g.go_id
+	WHERE p.pt_needintegral !=0
+	AND p.pt_name = 2
+	AND p.pt_addmoney = 0
+	AND k.ki_nowprice = 0
+	AND k.ki_state = 1
+	ORDER BY g.go_buysum DESC
+
+  </select>
+  
+
+  
+  
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+     <sql id="Details_Column_List">
+  g.go_id,g.go_name,g.go_buysum,k.ki_nowprice,k.ki_preprice,y.pt_name,p.pi_hang,p.pi_detail
+  </sql>
+  
+  
+    <!-- Good selectDetailsById(@Param("goodid")int goodid);-->
+  <select id="selectDetailsById" resultMap="DetailsResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Details_Column_List" />
+	FROM good g
+	LEFT JOIN go_kind k ON g.go_id = k.ki_goodid
+	LEFT JOIN go_picture p ON g.go_id = p.pi_goodid
+	LEFT JOIN go_paytype y ON g.go_id = y.pt_goodid
+	WHERE g.go_id = #{goodid,jdbcType=INTEGER} 
+  </select>
+  
+  
+  
+   <sql id="BuChaGood_Column_List">
+   g.go_id,g.go_name,p.pt_needintegral,k.ki_nowprice,pi.pi_sl
+  </sql>
+  
+  
+  <!-- List<Good> selectBuChaGood();-->
+  
+  <select id="selectBuChaGood" resultMap="BuChaGoodResultMap">
+	select 
+	<include refid="BuChaGood_Column_List" />
+
+    from good g 
+LEFT JOIN go_kind k ON g.go_id = k.ki_goodid
+LEFT JOIN go_paytype p ON g.go_id = p.pt_goodid
+LEFT JOIN go_picture pi ON g.go_id = pi.pi_goodid
+WHERE p.pt_name = 2 AND p.pt_needintegral !=0 AND k.ki_nowprice !=0
+
+  </select>
+  
+  
+  
+  <sql id="Base_Column_List">
+    go_id, go_type, go_name, go_looksum, go_buysum, go_total
+  </sql>
+  
+  
+  
+  
+  
+  <!-- List<Good> selectGoodIdByMaxBuySum();-->
+  <select id="selectGoodIdByMaxBuySum" resultMap="BaseResultMap">
+    select go_id
+    <if test="distinct">
+      distinct
+    </if>
+    FROM good as g WHERE go_buysum =  ANY 
+( select t.go_buysum from 
+(SELECT go_buysum  FROM good  ORDER BY  go_buysum desc LIMIT 5) AS t
+)
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <!-- List<Integer> selectSpecialPriceGoodId();-->
+    <select id="selectSpecialPriceGoodId" resultType="java.lang.Integer">
+    select go_id
+    <if test="distinct">
+      distinct
+    </if>
+ FROM good as g WHERE go_buysum =  ANY 
+( select t.go_buysum from 
+(SELECT go_buysum  FROM good WHERE go_id = ANY
+(SELECT  pt_goodid from go_paytype WHERE pt_name = 3) ORDER BY  go_buysum desc LIMIT 8)
+ AS t
+)
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  
+
+  
+    <!--  List<Integer> selectLbGoodId();-->
+    <select id="selectLbGoodId" resultType="java.lang.Integer">
+    select go_id
+    <if test="distinct">
+      distinct
+    </if>
+ FROM good as g WHERE go_buysum =  ANY 
+( select t.go_buysum from 
+(SELECT go_buysum  FROM good WHERE go_id = ANY
+(SELECT  pt_goodid from go_paytype WHERE pt_name = 3) ORDER BY  go_buysum desc LIMIT 5)
+ AS t
+)
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  
+  
+  
+  <sql id="AllShow_Column_List">
+    g.go_id, g.go_name,k.ki_nowprice,p.pi_hang,p.pi_su,p.pi_sl
+  </sql>
+  
+  <!--    List<Good> selectSpecialPriceGood(@Param("goId01")Integer goId01,
+    		@Param("goId02")Integer goId02,@Param("goId03")Integer goId03);;-->
+    <select id="selectSpecialPriceGood" parameterType="java.lang.Integer" resultMap="AllShowResultMap">
+	select 
+	<include refid="AllShow_Column_List" />
+
+    FROM good g 
+	LEFT JOIN go_kind k on g.go_id = ki_goodid 
+	LEFT JOIN go_picture p ON g.go_id = p.pi_goodid
+  	WHERE g.go_id = #{goId01,jdbcType=INTEGER}  OR 
+	g.go_id = #{goId02,jdbcType=INTEGER}  OR g.go_id = #{goId03,jdbcType=INTEGER} 
+
+  </select>
+   
+   
+   <!--List<Good> selectHotSellGood();-->
+   
+   <select id="selectHotSellGood"  resultMap="AllShowResultMap">
+	select 
+	<include refid="AllShow_Column_List" />
+
+    FROM good g 
+	LEFT JOIN go_kind k on g.go_id = ki_goodid 
+	LEFT JOIN go_picture p ON g.go_id = p.pi_goodid
+	WHERE g.go_id = ANY 
+	(select go_id
+	FROM good as g WHERE go_buysum =  ANY 
+	( select t.go_buysum from 
+	(SELECT go_buysum  FROM good WHERE go_id = ANY
+	(SELECT  pt_goodid from go_paytype WHERE pt_name = 1) ORDER BY  go_buysum desc LIMIT 3)
+	 AS t
+	))
+
+  </select>
+  
+  
+   <!--List<Good> selectGoodRank();-->
+   
+   <select id="selectGoodRank"  resultMap="BaseResultMap">
+	select 
+	<include refid="Base_Column_List" />
+
+   FROM good ORDER BY go_buysum DESC LIMIT 7
+
+  </select>
+  
+  
+  
+  
+  
+  
+   <!--List<Good> selectClothing();;-->
+   
+   <select id="selectClothing"  resultMap="AllShowResultMap">
+	select 
+	<include refid="AllShow_Column_List" />
+
+    FROM good g 
+	LEFT JOIN go_kind k on g.go_id = ki_goodid 
+	LEFT JOIN go_picture p ON g.go_id = p.pi_goodid
+	WHERE g.go_id = ANY 
+	(select go_id
+	FROM good as g WHERE go_buysum =  ANY 
+	( select t.go_buysum from 
+	(SELECT go_buysum  FROM good WHERE go_id = ANY
+	(SELECT  pt_goodid from go_paytype WHERE pt_name = 1)
+	AND go_type = '女装' OR go_type = '男装'
+	 ORDER BY  go_buysum desc LIMIT 3)
+	 AS t
+	))
+
+  </select>
+  
+  
+     <!--List<Good> selectMobiles();;-->
+   
+   <select id="selectMobiles"  resultMap="AllShowResultMap">
+	select 
+	<include refid="AllShow_Column_List" />
+
+    FROM good g 
+	LEFT JOIN go_kind k on g.go_id = ki_goodid 
+	LEFT JOIN go_picture p ON g.go_id = p.pi_goodid
+	WHERE g.go_id = ANY 
+	(select go_id
+	FROM good as g WHERE go_buysum =  ANY 
+	( select t.go_buysum from 
+	(SELECT go_buysum  FROM good WHERE go_id = ANY
+	(SELECT  pt_goodid from go_paytype WHERE pt_name = 1)
+	AND go_type = '手机数码'
+	 ORDER BY  go_buysum desc LIMIT 3)
+	 AS t
+	))
+
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  <select id="selectByExample" parameterType="com.ceshi.bean.GoodExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from good
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  
+  <sql id="search_good_Column_List">
+   g.go_id,g.go_name,g.go_buysum,p.pi_hang,k.ki_nowprice
+  </sql>
+  
+  <!--List<Good> selectByExampleWithLike(GoodExample example);-->
+    <select id="selectByExampleWithLike" parameterType="com.ceshi.bean.GoodExample" resultMap="BaseWithLikeResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="search_good_Column_List" />
+ 	FROM good g
+	LEFT JOIN go_picture p ON p.pi_goodid = g.go_id
+	LEFT JOIN go_kind k on k.ki_goodid = g.go_id
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause} DESC limit 10
+    </if>
+  </select>
+  
+  
+  
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from good
+    where go_id = #{goId,jdbcType=INTEGER}
+  </select>
+  
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from good
+    where go_id = #{goId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ceshi.bean.GoodExample">
+    delete from good
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ceshi.bean.Good">
+    insert into good (go_id, go_type, go_name, 
+      go_looksum, go_buysum, go_total
+      )
+    values (#{goId,jdbcType=INTEGER}, #{goType,jdbcType=VARCHAR}, #{goName,jdbcType=VARCHAR}, 
+      #{goLooksum,jdbcType=INTEGER}, #{goBuysum,jdbcType=INTEGER}, #{goTotal,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ceshi.bean.Good">
+    insert into good
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goId != null">
+        go_id,
+      </if>
+      <if test="goType != null">
+        go_type,
+      </if>
+      <if test="goName != null">
+        go_name,
+      </if>
+      <if test="goLooksum != null">
+        go_looksum,
+      </if>
+      <if test="goBuysum != null">
+        go_buysum,
+      </if>
+      <if test="goTotal != null">
+        go_total,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goId != null">
+        #{goId,jdbcType=INTEGER},
+      </if>
+      <if test="goType != null">
+        #{goType,jdbcType=VARCHAR},
+      </if>
+      <if test="goName != null">
+        #{goName,jdbcType=VARCHAR},
+      </if>
+      <if test="goLooksum != null">
+        #{goLooksum,jdbcType=INTEGER},
+      </if>
+      <if test="goBuysum != null">
+        #{goBuysum,jdbcType=INTEGER},
+      </if>
+      <if test="goTotal != null">
+        #{goTotal,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ceshi.bean.GoodExample" resultType="java.lang.Long">
+    select count(*) from good
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update good
+    <set>
+      <if test="record.goId != null">
+        go_id = #{record.goId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goType != null">
+        go_type = #{record.goType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goName != null">
+        go_name = #{record.goName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goLooksum != null">
+        go_looksum = #{record.goLooksum,jdbcType=INTEGER},
+      </if>
+      <if test="record.goBuysum != null">
+        go_buysum = #{record.goBuysum,jdbcType=INTEGER},
+      </if>
+      <if test="record.goTotal != null">
+        go_total = #{record.goTotal,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update good
+    set go_id = #{record.goId,jdbcType=INTEGER},
+      go_type = #{record.goType,jdbcType=VARCHAR},
+      go_name = #{record.goName,jdbcType=VARCHAR},
+      go_looksum = #{record.goLooksum,jdbcType=INTEGER},
+      go_buysum = #{record.goBuysum,jdbcType=INTEGER},
+      go_total = #{record.goTotal,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ceshi.bean.Good">
+    update good
+    <set>
+      <if test="goType != null">
+        go_type = #{goType,jdbcType=VARCHAR},
+      </if>
+      <if test="goName != null">
+        go_name = #{goName,jdbcType=VARCHAR},
+      </if>
+      <if test="goLooksum != null">
+        go_looksum = #{goLooksum,jdbcType=INTEGER},
+      </if>
+      <if test="goBuysum != null">
+        go_buysum = #{goBuysum,jdbcType=INTEGER},
+      </if>
+      <if test="goTotal != null">
+        go_total = #{goTotal,jdbcType=INTEGER},
+      </if>
+    </set>
+    where go_id = #{goId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ceshi.bean.Good">
+    update good
+    set go_type = #{goType,jdbcType=VARCHAR},
+      go_name = #{goName,jdbcType=VARCHAR},
+      go_looksum = #{goLooksum,jdbcType=INTEGER},
+      go_buysum = #{goBuysum,jdbcType=INTEGER},
+      go_total = #{goTotal,jdbcType=INTEGER}
+    where go_id = #{goId,jdbcType=INTEGER}
+  </update>
+</mapper>

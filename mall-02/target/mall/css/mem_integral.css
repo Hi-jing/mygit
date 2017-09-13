@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	padding: 0;
+	margin:  0 auto;
+	width: 100%;
+	height: 792px;
+	background: #e6edf5;
+}
+#mem_integral_top{
+	margin:0 auto;
+	background: #e6edf5;
+	padding-top: 1%;
+	padding-left:1%;
+	padding-right:1%;
+}
+#mem_integral_bottom{
+	margin:0 auto;
+	background: #e6edf5;
+	padding-top: 1%;
+	padding-left:1%;
+	padding-right:1%;
+}
+.inlook,.inedit{
+	font-size: 18px;
+	padding-left: 5px;
+}
+
+.inedit{
+	color: #0FA658;
+}
+.inlook{
+	color: #3F9CD7;
+}

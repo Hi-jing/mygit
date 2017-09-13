@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceshi.dao.Ad_loginrecordMapper">
+  <resultMap id="BaseResultMap" type="com.ceshi.bean.Ad_loginrecord">
+    <id column="lo_id" jdbcType="INTEGER" property="loId" />
+    <result column="lo_adid" jdbcType="INTEGER" property="loAdid" />
+    <result column="lo_date" jdbcType="VARCHAR" property="loDate" />
+  </resultMap>
+  
+  
+    <!--自定义-->
+  <resultMap id="BaseWithNameResultMap" type="com.ceshi.bean.Ad_loginrecord">
+   <id column="lo_id" jdbcType="INTEGER" property="loId" />
+    <result column="lo_adid" jdbcType="INTEGER" property="loAdid" />
+    <result column="lo_date" jdbcType="VARCHAR" property="loDate" />
+    
+    <!-- 指定联合查询的部门字段的封装 -->
+    <association property="administrator" javaType="com.ceshi.bean.Administrator">
+    	 <id column="ad_id" jdbcType="INTEGER" property="adId" />
+	    <result column="ad_username" jdbcType="VARCHAR" property="adUsername" />
+	    <result column="ad_password" jdbcType="VARCHAR" property="adPassword" />
+	    <result column="ad_phone" jdbcType="VARCHAR" property="adPhone" />
+	    <result column="ad_email" jdbcType="VARCHAR" property="adEmail" />
+	    <result column="ad_date" jdbcType="VARCHAR" property="adDate" />
+	    <result column="ad_state" jdbcType="INTEGER" property="adState" />
+	    <result column="ad_level" jdbcType="INTEGER" property="adLevel" />
+	    <result column="ad_name" jdbcType="VARCHAR" property="adName" />
+    </association>
+    
+
+  </resultMap>
+  
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    lo_id, lo_adid, lo_date
+  </sql>
+  <select id="selectByExample" parameterType="com.ceshi.bean.Ad_loginrecordExample" resultMap="BaseWithNameResultMap">
+    select *
+    from ad_loginrecord a
+	LEFT JOIN administrator t on
+	a.lo_adid = t.ad_id
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause} desc limit 6
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ad_loginrecord
+    where lo_id = #{loId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ad_loginrecord
+    where lo_id = #{loId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ceshi.bean.Ad_loginrecordExample">
+    delete from ad_loginrecord
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ceshi.bean.Ad_loginrecord">
+    insert into ad_loginrecord (lo_id, lo_adid, lo_date
+      )
+    values (#{loId,jdbcType=INTEGER}, #{loAdid,jdbcType=INTEGER}, #{loDate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ceshi.bean.Ad_loginrecord">
+    insert into ad_loginrecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loId != null">
+        lo_id,
+      </if>
+      <if test="loAdid != null">
+        lo_adid,
+      </if>
+      <if test="loDate != null">
+        lo_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loId != null">
+        #{loId,jdbcType=INTEGER},
+      </if>
+      <if test="loAdid != null">
+        #{loAdid,jdbcType=INTEGER},
+      </if>
+      <if test="loDate != null">
+        #{loDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ceshi.bean.Ad_loginrecordExample" resultType="java.lang.Long">
+    select count(*) from ad_loginrecord
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ad_loginrecord
+    <set>
+      <if test="record.loId != null">
+        lo_id = #{record.loId,jdbcType=INTEGER},
+      </if>
+      <if test="record.loAdid != null">
+        lo_adid = #{record.loAdid,jdbcType=INTEGER},
+      </if>
+      <if test="record.loDate != null">
+        lo_date = #{record.loDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ad_loginrecord
+    set lo_id = #{record.loId,jdbcType=INTEGER},
+      lo_adid = #{record.loAdid,jdbcType=INTEGER},
+      lo_date = #{record.loDate,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ceshi.bean.Ad_loginrecord">
+    update ad_loginrecord
+    <set>
+      <if test="loAdid != null">
+        lo_adid = #{loAdid,jdbcType=INTEGER},
+      </if>
+      <if test="loDate != null">
+        lo_date = #{loDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where lo_id = #{loId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ceshi.bean.Ad_loginrecord">
+    update ad_loginrecord
+    set lo_adid = #{loAdid,jdbcType=INTEGER},
+      lo_date = #{loDate,jdbcType=VARCHAR}
+    where lo_id = #{loId,jdbcType=INTEGER}
+  </update>
+</mapper>

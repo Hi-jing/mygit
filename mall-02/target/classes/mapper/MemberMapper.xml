@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceshi.dao.MemberMapper">
+  <resultMap id="BaseResultMap" type="com.ceshi.bean.Member">
+    <id column="me_id" jdbcType="INTEGER" property="meId" />
+    <result column="me_wxopenid" jdbcType="VARCHAR" property="meWxopenid" />
+    <result column="me_qqopenid" jdbcType="VARCHAR" property="meQqopenid" />
+    <result column="me_name" jdbcType="VARCHAR" property="meName" />
+    <result column="me_sex" jdbcType="CHAR" property="meSex" />
+    <result column="me_email" jdbcType="VARCHAR" property="meEmail" />
+    <result column="me_register" jdbcType="VARCHAR" property="meRegister" />
+    <result column="me_lastlogin" jdbcType="VARCHAR" property="meLastlogin" />
+    <result column="me_headaddress" jdbcType="VARCHAR" property="meHeadaddress" />
+    <result column="me_district" jdbcType="VARCHAR" property="meDistrict" />
+    <result column="me_nickname" jdbcType="VARCHAR" property="meNickname" />
+    <result column="me_phone" jdbcType="CHAR" property="mePhone" />
+    <result column="me_brithday" jdbcType="VARCHAR" property="meBrithday" />
+    <result column="me_loyalty" jdbcType="INTEGER" property="meLoyalty" />
+    <result column="me_password" jdbcType="VARCHAR" property="mePassword" />
+    <result column="me_identity" jdbcType="VARCHAR" property="meIdentity" />
+    <result column="me_levelid" jdbcType="INTEGER" property="meLevelid" />
+  </resultMap>
+  
+  
+      <!-- 自定义查询后的结果集 -->
+  <resultMap id="WithLevelResultMap" type="com.ceshi.bean.Member">
+    <id column="me_id" jdbcType="INTEGER" property="meId" />
+    <result column="me_wxopenid" jdbcType="VARCHAR" property="meWxopenid" />
+    <result column="me_qqopenid" jdbcType="VARCHAR" property="meQqopenid" />
+    <result column="me_name" jdbcType="VARCHAR" property="meName" />
+    <result column="me_sex" jdbcType="CHAR" property="meSex" />
+    <result column="me_email" jdbcType="VARCHAR" property="meEmail" />
+    <result column="me_register" jdbcType="VARCHAR" property="meRegister" />
+    <result column="me_lastlogin" jdbcType="VARCHAR" property="meLastlogin" />
+    <result column="me_headaddress" jdbcType="VARCHAR" property="meHeadaddress" />
+    <result column="me_district" jdbcType="VARCHAR" property="meDistrict" />
+    <result column="me_nickname" jdbcType="VARCHAR" property="meNickname" />
+    <result column="me_phone" jdbcType="CHAR" property="mePhone" />
+    <result column="me_brithday" jdbcType="VARCHAR" property="meBrithday" />
+    <result column="me_loyalty" jdbcType="INTEGER" property="meLoyalty" />
+    <result column="me_password" jdbcType="VARCHAR" property="mePassword" />
+    <result column="me_identity" jdbcType="VARCHAR" property="meIdentity" />
+    <result column="me_levelid" jdbcType="INTEGER" property="meLevelid" />
+    <!-- 指定联合查询的部门字段的封装 -->
+    <association property="me_level" javaType="com.ceshi.bean.Me_level">
+    	<id column="le_id" jdbcType="INTEGER" property="leId" />
+	    <result column="le_phase" jdbcType="CHAR" property="lePhase" />
+	    <result column="le_growthvalue" jdbcType="INTEGER" property="leGrowthvalue" />
+	    <result column="le_needgrowthvalue" jdbcType="INTEGER" property="leNeedgrowthvalue" />
+	    <result column="le_discount" jdbcType="DOUBLE" property="leDiscount" />
+    </association>
+  </resultMap>
+  
+  
+  
+        <!-- 自定义查询后的结果集 -->
+  <resultMap id="MemWithAllResultMap" type="com.ceshi.bean.Member">
+    <id column="me_id" jdbcType="INTEGER" property="meId" />
+    <result column="me_wxopenid" jdbcType="VARCHAR" property="meWxopenid" />
+    <result column="me_qqopenid" jdbcType="VARCHAR" property="meQqopenid" />
+    <result column="me_name" jdbcType="VARCHAR" property="meName" />
+    <result column="me_sex" jdbcType="CHAR" property="meSex" />
+    <result column="me_email" jdbcType="VARCHAR" property="meEmail" />
+    <result column="me_register" jdbcType="VARCHAR" property="meRegister" />
+    <result column="me_lastlogin" jdbcType="VARCHAR" property="meLastlogin" />
+    <result column="me_headaddress" jdbcType="VARCHAR" property="meHeadaddress" />
+    <result column="me_district" jdbcType="VARCHAR" property="meDistrict" />
+    <result column="me_nickname" jdbcType="VARCHAR" property="meNickname" />
+    <result column="me_phone" jdbcType="CHAR" property="mePhone" />
+    <result column="me_brithday" jdbcType="VARCHAR" property="meBrithday" />
+    <result column="me_loyalty" jdbcType="INTEGER" property="meLoyalty" />
+    <result column="me_password" jdbcType="VARCHAR" property="mePassword" />
+    <result column="me_identity" jdbcType="VARCHAR" property="meIdentity" />
+    <result column="me_levelid" jdbcType="INTEGER" property="meLevelid" />
+    <!-- 指定联合查询的部门字段的封装 -->
+    <association property="me_level" javaType="com.ceshi.bean.Me_level">
+    	<id column="le_id" jdbcType="INTEGER" property="leId" />
+	    <result column="le_phase" jdbcType="CHAR" property="lePhase" />
+	    <result column="le_growthvalue" jdbcType="INTEGER" property="leGrowthvalue" />
+	    <result column="le_needgrowthvalue" jdbcType="INTEGER" property="leNeedgrowthvalue" />
+	    <result column="le_discount" jdbcType="DOUBLE" property="leDiscount" />
+    </association>
+    
+     <association property="me_integral" javaType="com.ceshi.bean.Me_integral">
+    	<id column="in_id" jdbcType="INTEGER" property="inId" />
+	    <result column="in_levelid" jdbcType="INTEGER" property="inLevelid" />
+	    <result column="in_memberid" jdbcType="INTEGER" property="inMemberid" />
+	    <result column="in_value" jdbcType="INTEGER" property="inValue" />
+	    <result column="in_integraldraw" jdbcType="INTEGER" property="inIntegraldraw" />
+	    <result column="in_exchangegood" jdbcType="INTEGER" property="inExchangegood" />
+	    <result column="in_exchangecoupon" jdbcType="INTEGER" property="inExchangecoupon" />
+	    <result column="in_buchamoney" jdbcType="INTEGER" property="inBuchamoney" />
+    </association>
+    
+     <association property="me_membercard" javaType="com.ceshi.bean.Me_membercard">
+    	 <id column="mc_id" jdbcType="INTEGER" property="mcId" />
+	    <result column="mc_memberid" jdbcType="INTEGER" property="mcMemberid" />
+	    <result column="mc_money" jdbcType="DOUBLE" property="mcMoney" />
+	    <result column="mc_state" jdbcType="INTEGER" property="mcState" />
+	    <result column="mc_levelid" jdbcType="INTEGER" property="mcLevelid" />
+	    <result column="mc_cardnumber" jdbcType="BIGINT" property="mcCardnumber" />
+	    <result column="mc_paynumber" jdbcType="INTEGER" property="mcPaynumber" />
+    </association>
+  </resultMap>
+  
+  
+  
+  
+  
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    me_id, me_wxopenid, me_qqopenid, me_name, me_sex, me_email, me_register, me_lastlogin, 
+    me_headaddress, me_district, me_nickname, me_phone, me_brithday, me_loyalty, me_password, 
+    me_identity, me_levelid
+  </sql>
+  <sql id="WithLevel_Column_List">
+    m.me_id, m.me_wxopenid, m.me_qqopenid, m.me_name, m.me_sex, m.me_email, m.me_register, m.me_lastlogin, 
+    m.me_headaddress, m.me_district, m.me_nickname, m.me_phone, m.me_brithday, m.me_loyalty, m.me_password, 
+    m.me_identity, m.me_levelid,l.le_id, l.le_phase, l.le_growthvalue, l.le_needgrowthvalue, l.le_discount
+  </sql>
+  
+   <!--List<Member> selectByExampleWithLevel(MemberExample example);-->
+ 
+ 
+ <select id="selectByExampleWithLevel" resultMap="WithLevelResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="WithLevel_Column_List" />
+     from member m
+		left join me_level l on m.me_levelid = l.le_id
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <!-- List<Member> selectMemWithAll();-->
+    <select id="selectMemWithAll"  resultMap="MemWithAllResultMap">
+    select *
+    FROM member m
+	LEFT JOIN me_membercard c ON m.me_id = c.mc_memberid
+	LEFT JOIN me_integral i ON m.me_id = i.in_memberid
+	LEFT JOIN me_level l ON m.me_levelid = l.le_id
+	WHERE me_id !=0
+  </select>
+  
+  
+  
+  
+  <select id="selectByExample" parameterType="com.ceshi.bean.MemberExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from member
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from member
+    where me_id = #{meId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from member
+    where me_id = #{meId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ceshi.bean.MemberExample">
+    delete from member
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ceshi.bean.Member">
+    insert into member (me_id, me_wxopenid, me_qqopenid, 
+      me_name, me_sex, me_email, 
+      me_register, me_lastlogin, me_headaddress, 
+      me_district, me_nickname, me_phone, 
+      me_brithday, me_loyalty, me_password, 
+      me_identity, me_levelid)
+    values (#{meId,jdbcType=INTEGER}, #{meWxopenid,jdbcType=VARCHAR}, #{meQqopenid,jdbcType=VARCHAR}, 
+      #{meName,jdbcType=VARCHAR}, #{meSex,jdbcType=CHAR}, #{meEmail,jdbcType=VARCHAR}, 
+      #{meRegister,jdbcType=VARCHAR}, #{meLastlogin,jdbcType=VARCHAR}, #{meHeadaddress,jdbcType=VARCHAR}, 
+      #{meDistrict,jdbcType=VARCHAR}, #{meNickname,jdbcType=VARCHAR}, #{mePhone,jdbcType=CHAR}, 
+      #{meBrithday,jdbcType=VARCHAR}, #{meLoyalty,jdbcType=INTEGER}, #{mePassword,jdbcType=VARCHAR}, 
+      #{meIdentity,jdbcType=VARCHAR}, #{meLevelid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ceshi.bean.Member">
+    insert into member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="meId != null">
+        me_id,
+      </if>
+      <if test="meWxopenid != null">
+        me_wxopenid,
+      </if>
+      <if test="meQqopenid != null">
+        me_qqopenid,
+      </if>
+      <if test="meName != null">
+        me_name,
+      </if>
+      <if test="meSex != null">
+        me_sex,
+      </if>
+      <if test="meEmail != null">
+        me_email,
+      </if>
+      <if test="meRegister != null">
+        me_register,
+      </if>
+      <if test="meLastlogin != null">
+        me_lastlogin,
+      </if>
+      <if test="meHeadaddress != null">
+        me_headaddress,
+      </if>
+      <if test="meDistrict != null">
+        me_district,
+      </if>
+      <if test="meNickname != null">
+        me_nickname,
+      </if>
+      <if test="mePhone != null">
+        me_phone,
+      </if>
+      <if test="meBrithday != null">
+        me_brithday,
+      </if>
+      <if test="meLoyalty != null">
+        me_loyalty,
+      </if>
+      <if test="mePassword != null">
+        me_password,
+      </if>
+      <if test="meIdentity != null">
+        me_identity,
+      </if>
+      <if test="meLevelid != null">
+        me_levelid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="meId != null">
+        #{meId,jdbcType=INTEGER},
+      </if>
+      <if test="meWxopenid != null">
+        #{meWxopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="meQqopenid != null">
+        #{meQqopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="meName != null">
+        #{meName,jdbcType=VARCHAR},
+      </if>
+      <if test="meSex != null">
+        #{meSex,jdbcType=CHAR},
+      </if>
+      <if test="meEmail != null">
+        #{meEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="meRegister != null">
+        #{meRegister,jdbcType=VARCHAR},
+      </if>
+      <if test="meLastlogin != null">
+        #{meLastlogin,jdbcType=VARCHAR},
+      </if>
+      <if test="meHeadaddress != null">
+        #{meHeadaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="meDistrict != null">
+        #{meDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="meNickname != null">
+        #{meNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="mePhone != null">
+        #{mePhone,jdbcType=CHAR},
+      </if>
+      <if test="meBrithday != null">
+        #{meBrithday,jdbcType=VARCHAR},
+      </if>
+      <if test="meLoyalty != null">
+        #{meLoyalty,jdbcType=INTEGER},
+      </if>
+      <if test="mePassword != null">
+        #{mePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="meIdentity != null">
+        #{meIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="meLevelid != null">
+        #{meLevelid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ceshi.bean.MemberExample" resultType="java.lang.Long">
+    select count(*) from member
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update member
+    <set>
+      <if test="record.meId != null">
+        me_id = #{record.meId,jdbcType=INTEGER},
+      </if>
+      <if test="record.meWxopenid != null">
+        me_wxopenid = #{record.meWxopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.meQqopenid != null">
+        me_qqopenid = #{record.meQqopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.meName != null">
+        me_name = #{record.meName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.meSex != null">
+        me_sex = #{record.meSex,jdbcType=CHAR},
+      </if>
+      <if test="record.meEmail != null">
+        me_email = #{record.meEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.meRegister != null">
+        me_register = #{record.meRegister,jdbcType=VARCHAR},
+      </if>
+      <if test="record.meLastlogin != null">
+        me_lastlogin = #{record.meLastlogin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.meHeadaddress != null">
+        me_headaddress = #{record.meHeadaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.meDistrict != null">
+        me_district = #{record.meDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="record.meNickname != null">
+        me_nickname = #{record.meNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mePhone != null">
+        me_phone = #{record.mePhone,jdbcType=CHAR},
+      </if>
+      <if test="record.meBrithday != null">
+        me_brithday = #{record.meBrithday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.meLoyalty != null">
+        me_loyalty = #{record.meLoyalty,jdbcType=INTEGER},
+      </if>
+      <if test="record.mePassword != null">
+        me_password = #{record.mePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.meIdentity != null">
+        me_identity = #{record.meIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.meLevelid != null">
+        me_levelid = #{record.meLevelid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update member
+    set me_id = #{record.meId,jdbcType=INTEGER},
+      me_wxopenid = #{record.meWxopenid,jdbcType=VARCHAR},
+      me_qqopenid = #{record.meQqopenid,jdbcType=VARCHAR},
+      me_name = #{record.meName,jdbcType=VARCHAR},
+      me_sex = #{record.meSex,jdbcType=CHAR},
+      me_email = #{record.meEmail,jdbcType=VARCHAR},
+      me_register = #{record.meRegister,jdbcType=VARCHAR},
+      me_lastlogin = #{record.meLastlogin,jdbcType=VARCHAR},
+      me_headaddress = #{record.meHeadaddress,jdbcType=VARCHAR},
+      me_district = #{record.meDistrict,jdbcType=VARCHAR},
+      me_nickname = #{record.meNickname,jdbcType=VARCHAR},
+      me_phone = #{record.mePhone,jdbcType=CHAR},
+      me_brithday = #{record.meBrithday,jdbcType=VARCHAR},
+      me_loyalty = #{record.meLoyalty,jdbcType=INTEGER},
+      me_password = #{record.mePassword,jdbcType=VARCHAR},
+      me_identity = #{record.meIdentity,jdbcType=VARCHAR},
+      me_levelid = #{record.meLevelid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ceshi.bean.Member">
+    update member
+    <set>
+      <if test="meWxopenid != null">
+        me_wxopenid = #{meWxopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="meQqopenid != null">
+        me_qqopenid = #{meQqopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="meName != null">
+        me_name = #{meName,jdbcType=VARCHAR},
+      </if>
+      <if test="meSex != null">
+        me_sex = #{meSex,jdbcType=CHAR},
+      </if>
+      <if test="meEmail != null">
+        me_email = #{meEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="meRegister != null">
+        me_register = #{meRegister,jdbcType=VARCHAR},
+      </if>
+      <if test="meLastlogin != null">
+        me_lastlogin = #{meLastlogin,jdbcType=VARCHAR},
+      </if>
+      <if test="meHeadaddress != null">
+        me_headaddress = #{meHeadaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="meDistrict != null">
+        me_district = #{meDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="meNickname != null">
+        me_nickname = #{meNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="mePhone != null">
+        me_phone = #{mePhone,jdbcType=CHAR},
+      </if>
+      <if test="meBrithday != null">
+        me_brithday = #{meBrithday,jdbcType=VARCHAR},
+      </if>
+      <if test="meLoyalty != null">
+        me_loyalty = #{meLoyalty,jdbcType=INTEGER},
+      </if>
+      <if test="mePassword != null">
+        me_password = #{mePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="meIdentity != null">
+        me_identity = #{meIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="meLevelid != null">
+        me_levelid = #{meLevelid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where me_id = #{meId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ceshi.bean.Member">
+    update member
+    set me_wxopenid = #{meWxopenid,jdbcType=VARCHAR},
+      me_qqopenid = #{meQqopenid,jdbcType=VARCHAR},
+      me_name = #{meName,jdbcType=VARCHAR},
+      me_sex = #{meSex,jdbcType=CHAR},
+      me_email = #{meEmail,jdbcType=VARCHAR},
+      me_register = #{meRegister,jdbcType=VARCHAR},
+      me_lastlogin = #{meLastlogin,jdbcType=VARCHAR},
+      me_headaddress = #{meHeadaddress,jdbcType=VARCHAR},
+      me_district = #{meDistrict,jdbcType=VARCHAR},
+      me_nickname = #{meNickname,jdbcType=VARCHAR},
+      me_phone = #{mePhone,jdbcType=CHAR},
+      me_brithday = #{meBrithday,jdbcType=VARCHAR},
+      me_loyalty = #{meLoyalty,jdbcType=INTEGER},
+      me_password = #{mePassword,jdbcType=VARCHAR},
+      me_identity = #{meIdentity,jdbcType=VARCHAR},
+      me_levelid = #{meLevelid,jdbcType=INTEGER}
+    where me_id = #{meId,jdbcType=INTEGER}
+  </update>
+</mapper>

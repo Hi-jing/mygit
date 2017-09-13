@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceshi.dao.Go_evaluateMapper">
+  <resultMap id="BaseResultMap" type="com.ceshi.bean.Go_evaluate">
+    <id column="ev_id" jdbcType="INTEGER" property="evId" />
+    <result column="ev_goodid" jdbcType="INTEGER" property="evGoodid" />
+    <result column="ev_memberid" jdbcType="INTEGER" property="evMemberid" />
+    <result column="ev_text" jdbcType="VARCHAR" property="evText" />
+    <result column="ev_date" jdbcType="VARCHAR" property="evDate" />
+    <result column="ev_satisfactlevel" jdbcType="INTEGER" property="evSatisfactlevel" />
+  </resultMap>
+  
+  
+    <resultMap id="BaseWithMemResultMap" type="com.ceshi.bean.Go_evaluate">
+	    <id column="ev_id" jdbcType="INTEGER" property="evId" />
+	    <result column="ev_goodid" jdbcType="INTEGER" property="evGoodid" />
+	    <result column="ev_memberid" jdbcType="INTEGER" property="evMemberid" />
+	    <result column="ev_text" jdbcType="VARCHAR" property="evText" />
+	    <result column="ev_date" jdbcType="VARCHAR" property="evDate" />
+	    <result column="ev_satisfactlevel" jdbcType="INTEGER" property="evSatisfactlevel" />
+	    
+        <association property="member" javaType="com.ceshi.bean.Member">
+		    <id column="me_id" jdbcType="INTEGER" property="meId" />
+		    <result column="me_nickname" jdbcType="VARCHAR" property="meNickname" />
+	    </association>
+  </resultMap>
+  
+  
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+  <!--List<Go_evaluate> selectByExampleWithEvaluate(Go_evaluateExample example);-->
+    <select id="selectByExampleWithEvaluate" parameterType="com.ceshi.bean.Go_evaluateExample" resultMap="BaseWithMemResultMap">
+    select *
+    FROM go_evaluate e
+	LEFT JOIN member m ON m.me_id = e.ev_memberid
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause} DESC 
+    </if>
+  </select>
+  
+  
+  
+  <sql id="Base_Column_List">
+    ev_id, ev_goodid, ev_memberid, ev_text, ev_date, ev_satisfactlevel
+  </sql>
+  <select id="selectByExample" parameterType="com.ceshi.bean.Go_evaluateExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from go_evaluate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from go_evaluate
+    where ev_id = #{evId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from go_evaluate
+    where ev_id = #{evId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ceshi.bean.Go_evaluateExample">
+    delete from go_evaluate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ceshi.bean.Go_evaluate">
+    insert into go_evaluate (ev_id, ev_goodid, ev_memberid, 
+      ev_text, ev_date, ev_satisfactlevel
+      )
+    values (#{evId,jdbcType=INTEGER}, #{evGoodid,jdbcType=INTEGER}, #{evMemberid,jdbcType=INTEGER}, 
+      #{evText,jdbcType=VARCHAR}, #{evDate,jdbcType=VARCHAR}, #{evSatisfactlevel,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ceshi.bean.Go_evaluate">
+    insert into go_evaluate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="evId != null">
+        ev_id,
+      </if>
+      <if test="evGoodid != null">
+        ev_goodid,
+      </if>
+      <if test="evMemberid != null">
+        ev_memberid,
+      </if>
+      <if test="evText != null">
+        ev_text,
+      </if>
+      <if test="evDate != null">
+        ev_date,
+      </if>
+      <if test="evSatisfactlevel != null">
+        ev_satisfactlevel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="evId != null">
+        #{evId,jdbcType=INTEGER},
+      </if>
+      <if test="evGoodid != null">
+        #{evGoodid,jdbcType=INTEGER},
+      </if>
+      <if test="evMemberid != null">
+        #{evMemberid,jdbcType=INTEGER},
+      </if>
+      <if test="evText != null">
+        #{evText,jdbcType=VARCHAR},
+      </if>
+      <if test="evDate != null">
+        #{evDate,jdbcType=VARCHAR},
+      </if>
+      <if test="evSatisfactlevel != null">
+        #{evSatisfactlevel,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ceshi.bean.Go_evaluateExample" resultType="java.lang.Long">
+    select count(*) from go_evaluate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update go_evaluate
+    <set>
+      <if test="record.evId != null">
+        ev_id = #{record.evId,jdbcType=INTEGER},
+      </if>
+      <if test="record.evGoodid != null">
+        ev_goodid = #{record.evGoodid,jdbcType=INTEGER},
+      </if>
+      <if test="record.evMemberid != null">
+        ev_memberid = #{record.evMemberid,jdbcType=INTEGER},
+      </if>
+      <if test="record.evText != null">
+        ev_text = #{record.evText,jdbcType=VARCHAR},
+      </if>
+      <if test="record.evDate != null">
+        ev_date = #{record.evDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.evSatisfactlevel != null">
+        ev_satisfactlevel = #{record.evSatisfactlevel,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update go_evaluate
+    set ev_id = #{record.evId,jdbcType=INTEGER},
+      ev_goodid = #{record.evGoodid,jdbcType=INTEGER},
+      ev_memberid = #{record.evMemberid,jdbcType=INTEGER},
+      ev_text = #{record.evText,jdbcType=VARCHAR},
+      ev_date = #{record.evDate,jdbcType=VARCHAR},
+      ev_satisfactlevel = #{record.evSatisfactlevel,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ceshi.bean.Go_evaluate">
+    update go_evaluate
+    <set>
+      <if test="evGoodid != null">
+        ev_goodid = #{evGoodid,jdbcType=INTEGER},
+      </if>
+      <if test="evMemberid != null">
+        ev_memberid = #{evMemberid,jdbcType=INTEGER},
+      </if>
+      <if test="evText != null">
+        ev_text = #{evText,jdbcType=VARCHAR},
+      </if>
+      <if test="evDate != null">
+        ev_date = #{evDate,jdbcType=VARCHAR},
+      </if>
+      <if test="evSatisfactlevel != null">
+        ev_satisfactlevel = #{evSatisfactlevel,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ev_id = #{evId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ceshi.bean.Go_evaluate">
+    update go_evaluate
+    set ev_goodid = #{evGoodid,jdbcType=INTEGER},
+      ev_memberid = #{evMemberid,jdbcType=INTEGER},
+      ev_text = #{evText,jdbcType=VARCHAR},
+      ev_date = #{evDate,jdbcType=VARCHAR},
+      ev_satisfactlevel = #{evSatisfactlevel,jdbcType=INTEGER}
+    where ev_id = #{evId,jdbcType=INTEGER}
+  </update>
+</mapper>

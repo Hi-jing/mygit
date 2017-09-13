@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceshi.dao.Go_paytypeMapper">
+  <resultMap id="BaseResultMap" type="com.ceshi.bean.Go_paytype">
+    <id column="pt_id" jdbcType="INTEGER" property="ptId" />
+    <result column="pt_goodid" jdbcType="INTEGER" property="ptGoodid" />
+    <result column="pt_name" jdbcType="INTEGER" property="ptName" />
+    <result column="pt_needintegral" jdbcType="INTEGER" property="ptNeedintegral" />
+    <result column="pt_startdate" jdbcType="VARCHAR" property="ptStartdate" />
+    <result column="pt_overdate" jdbcType="VARCHAR" property="ptOverdate" />
+    <result column="pt_addmoney" jdbcType="DOUBLE" property="ptAddmoney" />
+    <result column="pt_msg" jdbcType="VARCHAR" property="ptMsg" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    pt_id, pt_goodid, pt_name, pt_needintegral, pt_startdate, pt_overdate, pt_addmoney, 
+    pt_msg
+  </sql>
+  <select id="selectByExample" parameterType="com.ceshi.bean.Go_paytypeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from go_paytype
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from go_paytype
+    where pt_id = #{ptId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from go_paytype
+    where pt_id = #{ptId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ceshi.bean.Go_paytypeExample">
+    delete from go_paytype
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ceshi.bean.Go_paytype">
+    insert into go_paytype (pt_id, pt_goodid, pt_name, 
+      pt_needintegral, pt_startdate, pt_overdate, 
+      pt_addmoney, pt_msg)
+    values (#{ptId,jdbcType=INTEGER}, #{ptGoodid,jdbcType=INTEGER}, #{ptName,jdbcType=INTEGER}, 
+      #{ptNeedintegral,jdbcType=INTEGER}, #{ptStartdate,jdbcType=VARCHAR}, #{ptOverdate,jdbcType=VARCHAR}, 
+      #{ptAddmoney,jdbcType=DOUBLE}, #{ptMsg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ceshi.bean.Go_paytype">
+    insert into go_paytype
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ptId != null">
+        pt_id,
+      </if>
+      <if test="ptGoodid != null">
+        pt_goodid,
+      </if>
+      <if test="ptName != null">
+        pt_name,
+      </if>
+      <if test="ptNeedintegral != null">
+        pt_needintegral,
+      </if>
+      <if test="ptStartdate != null">
+        pt_startdate,
+      </if>
+      <if test="ptOverdate != null">
+        pt_overdate,
+      </if>
+      <if test="ptAddmoney != null">
+        pt_addmoney,
+      </if>
+      <if test="ptMsg != null">
+        pt_msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ptId != null">
+        #{ptId,jdbcType=INTEGER},
+      </if>
+      <if test="ptGoodid != null">
+        #{ptGoodid,jdbcType=INTEGER},
+      </if>
+      <if test="ptName != null">
+        #{ptName,jdbcType=INTEGER},
+      </if>
+      <if test="ptNeedintegral != null">
+        #{ptNeedintegral,jdbcType=INTEGER},
+      </if>
+      <if test="ptStartdate != null">
+        #{ptStartdate,jdbcType=VARCHAR},
+      </if>
+      <if test="ptOverdate != null">
+        #{ptOverdate,jdbcType=VARCHAR},
+      </if>
+      <if test="ptAddmoney != null">
+        #{ptAddmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="ptMsg != null">
+        #{ptMsg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ceshi.bean.Go_paytypeExample" resultType="java.lang.Long">
+    select count(*) from go_paytype
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update go_paytype
+    <set>
+      <if test="record.ptId != null">
+        pt_id = #{record.ptId,jdbcType=INTEGER},
+      </if>
+      <if test="record.ptGoodid != null">
+        pt_goodid = #{record.ptGoodid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ptName != null">
+        pt_name = #{record.ptName,jdbcType=INTEGER},
+      </if>
+      <if test="record.ptNeedintegral != null">
+        pt_needintegral = #{record.ptNeedintegral,jdbcType=INTEGER},
+      </if>
+      <if test="record.ptStartdate != null">
+        pt_startdate = #{record.ptStartdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ptOverdate != null">
+        pt_overdate = #{record.ptOverdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ptAddmoney != null">
+        pt_addmoney = #{record.ptAddmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.ptMsg != null">
+        pt_msg = #{record.ptMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update go_paytype
+    set pt_id = #{record.ptId,jdbcType=INTEGER},
+      pt_goodid = #{record.ptGoodid,jdbcType=INTEGER},
+      pt_name = #{record.ptName,jdbcType=INTEGER},
+      pt_needintegral = #{record.ptNeedintegral,jdbcType=INTEGER},
+      pt_startdate = #{record.ptStartdate,jdbcType=VARCHAR},
+      pt_overdate = #{record.ptOverdate,jdbcType=VARCHAR},
+      pt_addmoney = #{record.ptAddmoney,jdbcType=DOUBLE},
+      pt_msg = #{record.ptMsg,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ceshi.bean.Go_paytype">
+    update go_paytype
+    <set>
+      <if test="ptGoodid != null">
+        pt_goodid = #{ptGoodid,jdbcType=INTEGER},
+      </if>
+      <if test="ptName != null">
+        pt_name = #{ptName,jdbcType=INTEGER},
+      </if>
+      <if test="ptNeedintegral != null">
+        pt_needintegral = #{ptNeedintegral,jdbcType=INTEGER},
+      </if>
+      <if test="ptStartdate != null">
+        pt_startdate = #{ptStartdate,jdbcType=VARCHAR},
+      </if>
+      <if test="ptOverdate != null">
+        pt_overdate = #{ptOverdate,jdbcType=VARCHAR},
+      </if>
+      <if test="ptAddmoney != null">
+        pt_addmoney = #{ptAddmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="ptMsg != null">
+        pt_msg = #{ptMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pt_id = #{ptId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ceshi.bean.Go_paytype">
+    update go_paytype
+    set pt_goodid = #{ptGoodid,jdbcType=INTEGER},
+      pt_name = #{ptName,jdbcType=INTEGER},
+      pt_needintegral = #{ptNeedintegral,jdbcType=INTEGER},
+      pt_startdate = #{ptStartdate,jdbcType=VARCHAR},
+      pt_overdate = #{ptOverdate,jdbcType=VARCHAR},
+      pt_addmoney = #{ptAddmoney,jdbcType=DOUBLE},
+      pt_msg = #{ptMsg,jdbcType=VARCHAR}
+    where pt_id = #{ptId,jdbcType=INTEGER}
+  </update>
+</mapper>

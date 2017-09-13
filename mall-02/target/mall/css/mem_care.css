@@ -1,0 +1,54 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	padding: 0;
+	margin:  0 auto;
+	width: 100%;
+	height: 792px;
+	background: #e6edf5;
+}
+#mem_care_top{
+	margin:0 auto;
+	background: #e6edf5;
+	padding-top: 1%;
+	padding-left:1%;
+	padding-right:1%;
+}
+
+
+
+
+.salelook,.saledelete{
+	font-size: 18px;
+	padding-left: 5px;
+}
+.salelook{
+	color: #3F9CD7;
+}
+.saledelete{
+	color: #F34475;
+}
+
+.date_time{
+	font-size: 18px;
+	color: #3F9CD7;
+
+}
+
+.select_file{
+	font-size: 18px;
+	color: #3F9CD7;
+}
+.input_file{
+	padding-top:20px;
+}
+.ph_input{
+	height: 30px;
+	width: 400px;
+}
+
+.add_prompte{
+	color:green;
+	fonet-size:5px;
+}

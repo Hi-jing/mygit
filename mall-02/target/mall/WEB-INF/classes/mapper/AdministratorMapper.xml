@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceshi.dao.AdministratorMapper">
+  <resultMap id="BaseResultMap" type="com.ceshi.bean.Administrator">
+    <id column="ad_id" jdbcType="INTEGER" property="adId" />
+    <result column="ad_username" jdbcType="VARCHAR" property="adUsername" />
+    <result column="ad_password" jdbcType="VARCHAR" property="adPassword" />
+    <result column="ad_phone" jdbcType="VARCHAR" property="adPhone" />
+    <result column="ad_email" jdbcType="VARCHAR" property="adEmail" />
+    <result column="ad_date" jdbcType="VARCHAR" property="adDate" />
+    <result column="ad_state" jdbcType="INTEGER" property="adState" />
+    <result column="ad_level" jdbcType="INTEGER" property="adLevel" />
+    <result column="ad_name" jdbcType="VARCHAR" property="adName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ad_id, ad_username, ad_password, ad_phone, ad_email, ad_date, ad_state, ad_level, 
+    ad_name
+  </sql>
+  <select id="selectByExample" parameterType="com.ceshi.bean.AdministratorExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from administrator
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from administrator
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from administrator
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ceshi.bean.AdministratorExample">
+    delete from administrator
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ceshi.bean.Administrator">
+    insert into administrator (ad_id, ad_username, ad_password, 
+      ad_phone, ad_email, ad_date, 
+      ad_state, ad_level, ad_name
+      )
+    values (#{adId,jdbcType=INTEGER}, #{adUsername,jdbcType=VARCHAR}, #{adPassword,jdbcType=VARCHAR}, 
+      #{adPhone,jdbcType=VARCHAR}, #{adEmail,jdbcType=VARCHAR}, #{adDate,jdbcType=VARCHAR}, 
+      #{adState,jdbcType=INTEGER}, #{adLevel,jdbcType=INTEGER}, #{adName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ceshi.bean.Administrator">
+    insert into administrator
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adId != null">
+        ad_id,
+      </if>
+      <if test="adUsername != null">
+        ad_username,
+      </if>
+      <if test="adPassword != null">
+        ad_password,
+      </if>
+      <if test="adPhone != null">
+        ad_phone,
+      </if>
+      <if test="adEmail != null">
+        ad_email,
+      </if>
+      <if test="adDate != null">
+        ad_date,
+      </if>
+      <if test="adState != null">
+        ad_state,
+      </if>
+      <if test="adLevel != null">
+        ad_level,
+      </if>
+      <if test="adName != null">
+        ad_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adId != null">
+        #{adId,jdbcType=INTEGER},
+      </if>
+      <if test="adUsername != null">
+        #{adUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="adPassword != null">
+        #{adPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="adPhone != null">
+        #{adPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="adEmail != null">
+        #{adEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="adDate != null">
+        #{adDate,jdbcType=VARCHAR},
+      </if>
+      <if test="adState != null">
+        #{adState,jdbcType=INTEGER},
+      </if>
+      <if test="adLevel != null">
+        #{adLevel,jdbcType=INTEGER},
+      </if>
+      <if test="adName != null">
+        #{adName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ceshi.bean.AdministratorExample" resultType="java.lang.Long">
+    select count(*) from administrator
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update administrator
+    <set>
+      <if test="record.adId != null">
+        ad_id = #{record.adId,jdbcType=INTEGER},
+      </if>
+      <if test="record.adUsername != null">
+        ad_username = #{record.adUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adPassword != null">
+        ad_password = #{record.adPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adPhone != null">
+        ad_phone = #{record.adPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adEmail != null">
+        ad_email = #{record.adEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adDate != null">
+        ad_date = #{record.adDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adState != null">
+        ad_state = #{record.adState,jdbcType=INTEGER},
+      </if>
+      <if test="record.adLevel != null">
+        ad_level = #{record.adLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.adName != null">
+        ad_name = #{record.adName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update administrator
+    set ad_id = #{record.adId,jdbcType=INTEGER},
+      ad_username = #{record.adUsername,jdbcType=VARCHAR},
+      ad_password = #{record.adPassword,jdbcType=VARCHAR},
+      ad_phone = #{record.adPhone,jdbcType=VARCHAR},
+      ad_email = #{record.adEmail,jdbcType=VARCHAR},
+      ad_date = #{record.adDate,jdbcType=VARCHAR},
+      ad_state = #{record.adState,jdbcType=INTEGER},
+      ad_level = #{record.adLevel,jdbcType=INTEGER},
+      ad_name = #{record.adName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ceshi.bean.Administrator">
+    update administrator
+    <set>
+      <if test="adUsername != null">
+        ad_username = #{adUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="adPassword != null">
+        ad_password = #{adPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="adPhone != null">
+        ad_phone = #{adPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="adEmail != null">
+        ad_email = #{adEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="adDate != null">
+        ad_date = #{adDate,jdbcType=VARCHAR},
+      </if>
+      <if test="adState != null">
+        ad_state = #{adState,jdbcType=INTEGER},
+      </if>
+      <if test="adLevel != null">
+        ad_level = #{adLevel,jdbcType=INTEGER},
+      </if>
+      <if test="adName != null">
+        ad_name = #{adName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ceshi.bean.Administrator">
+    update administrator
+    set ad_username = #{adUsername,jdbcType=VARCHAR},
+      ad_password = #{adPassword,jdbcType=VARCHAR},
+      ad_phone = #{adPhone,jdbcType=VARCHAR},
+      ad_email = #{adEmail,jdbcType=VARCHAR},
+      ad_date = #{adDate,jdbcType=VARCHAR},
+      ad_state = #{adState,jdbcType=INTEGER},
+      ad_level = #{adLevel,jdbcType=INTEGER},
+      ad_name = #{adName,jdbcType=VARCHAR}
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </update>
+</mapper>

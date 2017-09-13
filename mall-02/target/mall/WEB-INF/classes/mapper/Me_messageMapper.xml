@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceshi.dao.Me_messageMapper">
+  <resultMap id="BaseResultMap" type="com.ceshi.bean.Me_message">
+    <id column="me_id" jdbcType="INTEGER" property="meId" />
+    <result column="me_memberid" jdbcType="INTEGER" property="meMemberid" />
+    <result column="me_messagetype" jdbcType="INTEGER" property="meMessagetype" />
+    <result column="me_messagetext" jdbcType="VARCHAR" property="meMessagetext" />
+    <result column="me_title" jdbcType="VARCHAR" property="meTitle" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ceshi.bean.Me_message">
+    <result column="me_picture" jdbcType="LONGVARBINARY" property="mePicture" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    me_id, me_memberid, me_messagetype, me_messagetext, me_title
+  </sql>
+  <sql id="Blob_Column_List">
+    me_picture
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.ceshi.bean.Me_messageExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from me_message
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause} desc
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.ceshi.bean.Me_messageExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from me_message
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from me_message
+    where me_id = #{meId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from me_message
+    where me_id = #{meId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ceshi.bean.Me_messageExample">
+    delete from me_message
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ceshi.bean.Me_message">
+    insert into me_message (me_id, me_memberid, me_messagetype, 
+      me_messagetext, me_title, me_picture
+      )
+    values (#{meId,jdbcType=INTEGER}, #{meMemberid,jdbcType=INTEGER}, #{meMessagetype,jdbcType=INTEGER}, 
+      #{meMessagetext,jdbcType=VARCHAR}, #{meTitle,jdbcType=VARCHAR}, #{mePicture,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ceshi.bean.Me_message">
+    insert into me_message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="meId != null">
+        me_id,
+      </if>
+      <if test="meMemberid != null">
+        me_memberid,
+      </if>
+      <if test="meMessagetype != null">
+        me_messagetype,
+      </if>
+      <if test="meMessagetext != null">
+        me_messagetext,
+      </if>
+      <if test="meTitle != null">
+        me_title,
+      </if>
+      <if test="mePicture != null">
+        me_picture,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="meId != null">
+        #{meId,jdbcType=INTEGER},
+      </if>
+      <if test="meMemberid != null">
+        #{meMemberid,jdbcType=INTEGER},
+      </if>
+      <if test="meMessagetype != null">
+        #{meMessagetype,jdbcType=INTEGER},
+      </if>
+      <if test="meMessagetext != null">
+        #{meMessagetext,jdbcType=VARCHAR},
+      </if>
+      <if test="meTitle != null">
+        #{meTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="mePicture != null">
+        #{mePicture,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ceshi.bean.Me_messageExample" resultType="java.lang.Long">
+    select count(*) from me_message
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update me_message
+    <set>
+      <if test="record.meId != null">
+        me_id = #{record.meId,jdbcType=INTEGER},
+      </if>
+      <if test="record.meMemberid != null">
+        me_memberid = #{record.meMemberid,jdbcType=INTEGER},
+      </if>
+      <if test="record.meMessagetype != null">
+        me_messagetype = #{record.meMessagetype,jdbcType=INTEGER},
+      </if>
+      <if test="record.meMessagetext != null">
+        me_messagetext = #{record.meMessagetext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.meTitle != null">
+        me_title = #{record.meTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mePicture != null">
+        me_picture = #{record.mePicture,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update me_message
+    set me_id = #{record.meId,jdbcType=INTEGER},
+      me_memberid = #{record.meMemberid,jdbcType=INTEGER},
+      me_messagetype = #{record.meMessagetype,jdbcType=INTEGER},
+      me_messagetext = #{record.meMessagetext,jdbcType=VARCHAR},
+      me_title = #{record.meTitle,jdbcType=VARCHAR},
+      me_picture = #{record.mePicture,jdbcType=LONGVARBINARY}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update me_message
+    set me_id = #{record.meId,jdbcType=INTEGER},
+      me_memberid = #{record.meMemberid,jdbcType=INTEGER},
+      me_messagetype = #{record.meMessagetype,jdbcType=INTEGER},
+      me_messagetext = #{record.meMessagetext,jdbcType=VARCHAR},
+      me_title = #{record.meTitle,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ceshi.bean.Me_message">
+    update me_message
+    <set>
+      <if test="meMemberid != null">
+        me_memberid = #{meMemberid,jdbcType=INTEGER},
+      </if>
+      <if test="meMessagetype != null">
+        me_messagetype = #{meMessagetype,jdbcType=INTEGER},
+      </if>
+      <if test="meMessagetext != null">
+        me_messagetext = #{meMessagetext,jdbcType=VARCHAR},
+      </if>
+      <if test="meTitle != null">
+        me_title = #{meTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="mePicture != null">
+        me_picture = #{mePicture,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where me_id = #{meId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ceshi.bean.Me_message">
+    update me_message
+    set me_memberid = #{meMemberid,jdbcType=INTEGER},
+      me_messagetype = #{meMessagetype,jdbcType=INTEGER},
+      me_messagetext = #{meMessagetext,jdbcType=VARCHAR},
+      me_title = #{meTitle,jdbcType=VARCHAR},
+      me_picture = #{mePicture,jdbcType=LONGVARBINARY}
+    where me_id = #{meId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ceshi.bean.Me_message">
+    update me_message
+    set me_memberid = #{meMemberid,jdbcType=INTEGER},
+      me_messagetype = #{meMessagetype,jdbcType=INTEGER},
+      me_messagetext = #{meMessagetext,jdbcType=VARCHAR},
+      me_title = #{meTitle,jdbcType=VARCHAR}
+    where me_id = #{meId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceshi.dao.Me_couponMapper">
+  <resultMap id="BaseResultMap" type="com.ceshi.bean.Me_coupon">
+    <id column="cou_mycouid" jdbcType="INTEGER" property="couMycouid" />
+    <result column="cou_id" jdbcType="INTEGER" property="couId" />
+    <result column="cou_memberid" jdbcType="INTEGER" property="couMemberid" />
+    <result column="cou_needmoney" jdbcType="DOUBLE" property="couNeedmoney" />
+    <result column="cou_reductmoney" jdbcType="DOUBLE" property="couReductmoney" />
+    <result column="cou_goodtype" jdbcType="INTEGER" property="couGoodtype" />
+    <result column="cou_state" jdbcType="INTEGER" property="couState" />
+    <result column="cou_type" jdbcType="INTEGER" property="couType" />
+    <result column="cou_startdate" jdbcType="VARCHAR" property="couStartdate" />
+    <result column="cou_enddate" jdbcType="VARCHAR" property="couEnddate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    cou_mycouid, cou_id, cou_memberid, cou_needmoney, cou_reductmoney, cou_goodtype, 
+    cou_state, cou_type, cou_startdate, cou_enddate
+  </sql>
+  <select id="selectByExample" parameterType="com.ceshi.bean.Me_couponExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from me_coupon
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause} desc
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from me_coupon
+    where cou_mycouid = #{couMycouid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from me_coupon
+    where cou_mycouid = #{couMycouid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ceshi.bean.Me_couponExample">
+    delete from me_coupon
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ceshi.bean.Me_coupon">
+    insert into me_coupon (cou_mycouid, cou_id, cou_memberid, 
+      cou_needmoney, cou_reductmoney, cou_goodtype, 
+      cou_state, cou_type, cou_startdate, 
+      cou_enddate)
+    values (#{couMycouid,jdbcType=INTEGER}, #{couId,jdbcType=INTEGER}, #{couMemberid,jdbcType=INTEGER}, 
+      #{couNeedmoney,jdbcType=DOUBLE}, #{couReductmoney,jdbcType=DOUBLE}, #{couGoodtype,jdbcType=INTEGER}, 
+      #{couState,jdbcType=INTEGER}, #{couType,jdbcType=INTEGER}, #{couStartdate,jdbcType=VARCHAR}, 
+      #{couEnddate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ceshi.bean.Me_coupon">
+    insert into me_coupon
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="couMycouid != null">
+        cou_mycouid,
+      </if>
+      <if test="couId != null">
+        cou_id,
+      </if>
+      <if test="couMemberid != null">
+        cou_memberid,
+      </if>
+      <if test="couNeedmoney != null">
+        cou_needmoney,
+      </if>
+      <if test="couReductmoney != null">
+        cou_reductmoney,
+      </if>
+      <if test="couGoodtype != null">
+        cou_goodtype,
+      </if>
+      <if test="couState != null">
+        cou_state,
+      </if>
+      <if test="couType != null">
+        cou_type,
+      </if>
+      <if test="couStartdate != null">
+        cou_startdate,
+      </if>
+      <if test="couEnddate != null">
+        cou_enddate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="couMycouid != null">
+        #{couMycouid,jdbcType=INTEGER},
+      </if>
+      <if test="couId != null">
+        #{couId,jdbcType=INTEGER},
+      </if>
+      <if test="couMemberid != null">
+        #{couMemberid,jdbcType=INTEGER},
+      </if>
+      <if test="couNeedmoney != null">
+        #{couNeedmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="couReductmoney != null">
+        #{couReductmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="couGoodtype != null">
+        #{couGoodtype,jdbcType=INTEGER},
+      </if>
+      <if test="couState != null">
+        #{couState,jdbcType=INTEGER},
+      </if>
+      <if test="couType != null">
+        #{couType,jdbcType=INTEGER},
+      </if>
+      <if test="couStartdate != null">
+        #{couStartdate,jdbcType=VARCHAR},
+      </if>
+      <if test="couEnddate != null">
+        #{couEnddate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ceshi.bean.Me_couponExample" resultType="java.lang.Long">
+    select count(*) from me_coupon
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update me_coupon
+    <set>
+      <if test="record.couMycouid != null">
+        cou_mycouid = #{record.couMycouid,jdbcType=INTEGER},
+      </if>
+      <if test="record.couId != null">
+        cou_id = #{record.couId,jdbcType=INTEGER},
+      </if>
+      <if test="record.couMemberid != null">
+        cou_memberid = #{record.couMemberid,jdbcType=INTEGER},
+      </if>
+      <if test="record.couNeedmoney != null">
+        cou_needmoney = #{record.couNeedmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.couReductmoney != null">
+        cou_reductmoney = #{record.couReductmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.couGoodtype != null">
+        cou_goodtype = #{record.couGoodtype,jdbcType=INTEGER},
+      </if>
+      <if test="record.couState != null">
+        cou_state = #{record.couState,jdbcType=INTEGER},
+      </if>
+      <if test="record.couType != null">
+        cou_type = #{record.couType,jdbcType=INTEGER},
+      </if>
+      <if test="record.couStartdate != null">
+        cou_startdate = #{record.couStartdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.couEnddate != null">
+        cou_enddate = #{record.couEnddate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update me_coupon
+    set cou_mycouid = #{record.couMycouid,jdbcType=INTEGER},
+      cou_id = #{record.couId,jdbcType=INTEGER},
+      cou_memberid = #{record.couMemberid,jdbcType=INTEGER},
+      cou_needmoney = #{record.couNeedmoney,jdbcType=DOUBLE},
+      cou_reductmoney = #{record.couReductmoney,jdbcType=DOUBLE},
+      cou_goodtype = #{record.couGoodtype,jdbcType=INTEGER},
+      cou_state = #{record.couState,jdbcType=INTEGER},
+      cou_type = #{record.couType,jdbcType=INTEGER},
+      cou_startdate = #{record.couStartdate,jdbcType=VARCHAR},
+      cou_enddate = #{record.couEnddate,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ceshi.bean.Me_coupon">
+    update me_coupon
+    <set>
+      <if test="couId != null">
+        cou_id = #{couId,jdbcType=INTEGER},
+      </if>
+      <if test="couMemberid != null">
+        cou_memberid = #{couMemberid,jdbcType=INTEGER},
+      </if>
+      <if test="couNeedmoney != null">
+        cou_needmoney = #{couNeedmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="couReductmoney != null">
+        cou_reductmoney = #{couReductmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="couGoodtype != null">
+        cou_goodtype = #{couGoodtype,jdbcType=INTEGER},
+      </if>
+      <if test="couState != null">
+        cou_state = #{couState,jdbcType=INTEGER},
+      </if>
+      <if test="couType != null">
+        cou_type = #{couType,jdbcType=INTEGER},
+      </if>
+      <if test="couStartdate != null">
+        cou_startdate = #{couStartdate,jdbcType=VARCHAR},
+      </if>
+      <if test="couEnddate != null">
+        cou_enddate = #{couEnddate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cou_mycouid = #{couMycouid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ceshi.bean.Me_coupon">
+    update me_coupon
+    set cou_id = #{couId,jdbcType=INTEGER},
+      cou_memberid = #{couMemberid,jdbcType=INTEGER},
+      cou_needmoney = #{couNeedmoney,jdbcType=DOUBLE},
+      cou_reductmoney = #{couReductmoney,jdbcType=DOUBLE},
+      cou_goodtype = #{couGoodtype,jdbcType=INTEGER},
+      cou_state = #{couState,jdbcType=INTEGER},
+      cou_type = #{couType,jdbcType=INTEGER},
+      cou_startdate = #{couStartdate,jdbcType=VARCHAR},
+      cou_enddate = #{couEnddate,jdbcType=VARCHAR}
+    where cou_mycouid = #{couMycouid,jdbcType=INTEGER}
+  </update>
+</mapper>

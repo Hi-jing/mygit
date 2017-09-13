@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceshi.dao.MyorderMapper">
+  <resultMap id="BaseResultMap" type="com.ceshi.bean.Myorder">
+    <id column="or_id" jdbcType="INTEGER" property="orId" />
+    <result column="or_memberid" jdbcType="INTEGER" property="orMemberid" />
+    <result column="or_costmoney" jdbcType="DOUBLE" property="orCostmoney" />
+    <result column="or_date" jdbcType="VARCHAR" property="orDate" />
+    <result column="or_state" jdbcType="INTEGER" property="orState" />
+    <result column="or_sendtype" jdbcType="INTEGER" property="orSendtype" />
+    <result column="or_addressid" jdbcType="INTEGER" property="orAddressid" />
+    <result column="or_leavemsg" jdbcType="VARCHAR" property="orLeavemsg" />
+    <result column="or_couponid" jdbcType="INTEGER" property="orCouponid" />
+    <result column="or_paytype" jdbcType="INTEGER" property="orPaytype" />
+    <result column="or_senddate" jdbcType="VARCHAR" property="orSenddate" />
+    <result column="or_getdate" jdbcType="VARCHAR" property="orGetdate" />
+    <result column="or_buytype" jdbcType="INTEGER" property="orBuytype" />
+    <result column="or_expendval" jdbcType="INTEGER" property="orExpendval" />
+    <result column="or_type" jdbcType="INTEGER" property="orType" />
+  </resultMap>
+  
+  
+  <!--自定义-->
+  <resultMap id="WithAllResultMap" type="com.ceshi.bean.Myorder">
+    <id column="or_id" jdbcType="INTEGER" property="orId" />
+    <result column="or_memberid" jdbcType="INTEGER" property="orMemberid" />
+    <result column="or_costmoney" jdbcType="DOUBLE" property="orCostmoney" />
+    <result column="or_date" jdbcType="VARCHAR" property="orDate" />
+    <result column="or_state" jdbcType="INTEGER" property="orState" />
+    <result column="or_sendtype" jdbcType="INTEGER" property="orSendtype" />
+    <result column="or_addressid" jdbcType="INTEGER" property="orAddressid" />
+    <result column="or_leavemsg" jdbcType="VARCHAR" property="orLeavemsg" />
+    <result column="or_couponid" jdbcType="INTEGER" property="orCouponid" />
+    <result column="or_paytype" jdbcType="INTEGER" property="orPaytype" />
+    <result column="or_senddate" jdbcType="VARCHAR" property="orSenddate" />
+    <result column="or_getdate" jdbcType="VARCHAR" property="orGetdate" />
+    <result column="or_buytype" jdbcType="INTEGER" property="orBuytype" />
+    <result column="or_expendval" jdbcType="INTEGER" property="orExpendval" />
+    <result column="or_type" jdbcType="INTEGER" property="orType" />
+    
+    <!-- 指定联合查询的部门字段的封装 -->
+    <association property="or_good" javaType="com.ceshi.bean.Or_good">
+    	<id column="go_id" jdbcType="INTEGER" property="goId" />
+	    <result column="go_orid" jdbcType="INTEGER" property="goOrid" />
+	    <result column="go_goodid" jdbcType="INTEGER" property="goGoodid" />
+	    <result column="go_kindid" jdbcType="INTEGER" property="goKindid" />
+	    <result column="go_buysum" jdbcType="INTEGER" property="goBuysum" />
+    </association>
+    
+    
+     <!-- 指定联合查询的部门字段的封装 -->
+    <association property="good" javaType="com.ceshi.bean.Good">
+    	<id column="go_id" jdbcType="INTEGER" property="goId" />
+	    <result column="go_type" jdbcType="VARCHAR" property="goType" />
+	    <result column="go_name" jdbcType="VARCHAR" property="goName" />
+	    <result column="go_looksum" jdbcType="INTEGER" property="goLooksum" />
+	    <result column="go_buysum" jdbcType="INTEGER" property="goBuysum" />
+	    <result column="go_total" jdbcType="INTEGER" property="goTotal" />
+    </association>
+    
+    
+    <!-- 指定联合查询的部门字段的封装 -->
+    <association property="go_kind" javaType="com.ceshi.bean.Go_kind">
+    	<id column="ki_id" jdbcType="INTEGER" property="kiId" />
+	    <result column="ki_goodid" jdbcType="INTEGER" property="kiGoodid" />
+	    <result column="ki_name" jdbcType="VARCHAR" property="kiName" />
+	    <result column="ki_nowprice" jdbcType="DOUBLE" property="kiNowprice" />
+	    <result column="ki_preprice" jdbcType="DOUBLE" property="kiPreprice" />
+	    <result column="ki_state" jdbcType="INTEGER" property="kiState" />
+	    <result column="ki_addmoney" jdbcType="DOUBLE" property="kiAddmoney" />
+    </association>
+    
+    
+    <!-- 指定联合查询的部门字段的封装 -->
+    <association property="go_paytype" javaType="com.ceshi.bean.Go_paytype">
+    	 <id column="pt_id" jdbcType="INTEGER" property="ptId" />
+	    <result column="pt_goodid" jdbcType="INTEGER" property="ptGoodid" />
+	    <result column="pt_name" jdbcType="INTEGER" property="ptName" />
+	    <result column="pt_needintegral" jdbcType="INTEGER" property="ptNeedintegral" />
+	    <result column="pt_startdate" jdbcType="VARCHAR" property="ptStartdate" />
+	    <result column="pt_overdate" jdbcType="VARCHAR" property="ptOverdate" />
+	    <result column="pt_addmoney" jdbcType="DOUBLE" property="ptAddmoney" />
+	    <result column="pt_msg" jdbcType="VARCHAR" property="ptMsg" />
+    </association>
+    
+    <!-- 指定联合查询的部门字段的封装 -->
+    <association property="go_pictureWithBLOBs" javaType="com.ceshi.bean.Go_pictureWithBLOBs">
+    	<id column="pi_id" jdbcType="INTEGER" property="piId" />
+	    <result column="pi_goodid" jdbcType="INTEGER" property="piGoodid" />
+	    <result column="pi_hang" jdbcType="LONGVARBINARY" property="piHang" />
+	    <result column="pi_su" jdbcType="LONGVARBINARY" property="piSu" />
+	    <result column="pi_sl" jdbcType="LONGVARBINARY" property="piSl" />
+	    <result column="pi_lb" jdbcType="LONGVARBINARY" property="piLb" />
+	    <result column="pi_detail" jdbcType="LONGVARBINARY" property="piDetail" />
+    </association>
+    
+    
+ 
+    
+    
+  </resultMap>
+  
+
+
+  <!--自定义-->
+  <resultMap id="RecentAndIntegralResultMap" type="com.ceshi.bean.Myorder">
+    <id column="or_id" jdbcType="INTEGER" property="orId" />
+    <result column="or_costmoney" jdbcType="DOUBLE" property="orCostmoney" />
+    <result column="or_expendval" jdbcType="INTEGER" property="orExpendval" />
+    
+    <!-- 指定联合查询的部门字段的封装 -->
+    <association property="or_good" javaType="com.ceshi.bean.Or_good">
+    	<id column="go_id" jdbcType="INTEGER" property="goId" />
+    </association>
+    
+  
+    <association property="good" javaType="com.ceshi.bean.Good">
+    	  <result column="go_name" jdbcType="VARCHAR" property="goName" />
+    </association>
+    
+       <association property="go_pictureWithBLOBs" javaType="com.ceshi.bean.Go_pictureWithBLOBs">
+    	 <result column="pi_sl" jdbcType="LONGVARBINARY" property="piSl" />
+    </association>
+    
+    
+  </resultMap>
+  
+  
+  
+    <!--自定义-->
+  <resultMap id="AllIntegralInfoResultMap" type="com.ceshi.bean.Myorder">
+     <id column="or_id" jdbcType="INTEGER" property="orId" />
+    <result column="or_memberid" jdbcType="INTEGER" property="orMemberid" />
+    <result column="or_costmoney" jdbcType="DOUBLE" property="orCostmoney" />
+    <result column="or_date" jdbcType="VARCHAR" property="orDate" />
+    <result column="or_state" jdbcType="INTEGER" property="orState" />
+    <result column="or_sendtype" jdbcType="INTEGER" property="orSendtype" />
+    <result column="or_addressid" jdbcType="INTEGER" property="orAddressid" />
+    <result column="or_leavemsg" jdbcType="VARCHAR" property="orLeavemsg" />
+    <result column="or_couponid" jdbcType="INTEGER" property="orCouponid" />
+    <result column="or_paytype" jdbcType="INTEGER" property="orPaytype" />
+    <result column="or_senddate" jdbcType="VARCHAR" property="orSenddate" />
+    <result column="or_getdate" jdbcType="VARCHAR" property="orGetdate" />
+    <result column="or_buytype" jdbcType="INTEGER" property="orBuytype" />
+    <result column="or_expendval" jdbcType="INTEGER" property="orExpendval" />
+    <result column="or_type" jdbcType="INTEGER" property="orType" />
+    
+    <!-- 指定联合查询的部门字段的封装 -->
+    <association property="member" javaType="com.ceshi.bean.Member">
+    	 <id column="me_id" jdbcType="INTEGER" property="meId" />
+	    <result column="me_wxopenid" jdbcType="VARCHAR" property="meWxopenid" />
+	    <result column="me_qqopenid" jdbcType="VARCHAR" property="meQqopenid" />
+	    <result column="me_name" jdbcType="VARCHAR" property="meName" />
+	    <result column="me_sex" jdbcType="CHAR" property="meSex" />
+	    <result column="me_email" jdbcType="VARCHAR" property="meEmail" />
+	    <result column="me_register" jdbcType="VARCHAR" property="meRegister" />
+	    <result column="me_lastlogin" jdbcType="VARCHAR" property="meLastlogin" />
+	    <result column="me_headaddress" jdbcType="VARCHAR" property="meHeadaddress" />
+	    <result column="me_district" jdbcType="VARCHAR" property="meDistrict" />
+	    <result column="me_nickname" jdbcType="VARCHAR" property="meNickname" />
+	    <result column="me_phone" jdbcType="CHAR" property="mePhone" />
+	    <result column="me_brithday" jdbcType="VARCHAR" property="meBrithday" />
+	    <result column="me_loyalty" jdbcType="INTEGER" property="meLoyalty" />
+	    <result column="me_password" jdbcType="VARCHAR" property="mePassword" />
+	    <result column="me_identity" jdbcType="VARCHAR" property="meIdentity" />
+	    <result column="me_levelid" jdbcType="INTEGER" property="meLevelid" />
+    </association>
+    
+  
+    <association property="me_address" javaType="com.ceshi.bean.Me_address">
+    	 <id column="ad_id" jdbcType="INTEGER" property="adId" />
+	    <result column="ad_memberid" jdbcType="INTEGER" property="adMemberid" />
+	    <result column="ad_name" jdbcType="VARCHAR" property="adName" />
+	    <result column="ad_phone" jdbcType="VARCHAR" property="adPhone" />
+	    <result column="ad_district" jdbcType="VARCHAR" property="adDistrict" />
+	    <result column="ad_address" jdbcType="VARCHAR" property="adAddress" />
+	    <result column="ad_zipcode" jdbcType="VARCHAR" property="adZipcode" />
+	    <result column="ad_label" jdbcType="VARCHAR" property="adLabel" />
+    </association>
+    
+    
+  </resultMap>
+  
+  
+  
+
+   
+  
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    or_id, or_memberid, or_costmoney, or_date, or_state, or_sendtype, or_addressid, or_leavemsg, 
+    or_couponid, or_paytype, or_senddate, or_getdate, or_buytype, or_expendval, or_type
+  </sql>
+  
+  <sql id="WithAll_Column_List">
+    m.or_id, m.or_memberid, m.or_costmoney, m.or_date, m.or_state, m.or_sendtype, m.or_addressid, m.or_leavemsg, m.or_couponid, m.or_paytype, m.or_senddate, m.or_getdate, m.or_buytype, m.or_expendval, m.or_type,
+	o.go_id,o.go_orid,o.go_goodid,o.go_kindid,o.go_buysum,
+	g.go_id,g.go_type,g.go_name,g.go_looksum,g.go_buysum,g.go_total,
+	k.ki_id,k.ki_goodid,k.ki_name,k.ki_nowprice,k.ki_preprice,k.ki_state,k.ki_addmoney,
+	p.pt_id,p.pt_goodid,p.pt_name,p.pt_needintegral,p.pt_startdate,p.pt_overdate,p.pt_addmoney,
+	i.pi_id,i.pi_goodid,i.pi_hang,i.pi_su,i.pi_sl,i.pi_lb,i.pi_detail
+  </sql>
+ 
+ 
+  <!--  List<Myorder> selectAllIntegralInfo();;-->
+  <select id="selectAllIntegralInfo"  resultMap="AllIntegralInfoResultMap">
+    SELECT *
+	FROM myorder o 
+	LEFT JOIN member m ON m.me_id = o.or_memberid
+	LEFT JOIN me_address a on a.ad_id = o.or_addressid
+	WHERE o.or_expendval !=0
+	and (o.or_buytype = 1 OR o.or_buytype = 2)
+	AND o.or_type =1
+
+  </select>
+  
+  
+   
+  
+   <sql id="RecentAndIntegral_Column_List">
+   m.or_id,m.or_costmoney,m.or_expendval,o.go_goodid,g.go_name,p.pi_sl
+  </sql>
+  
+  <!--  Myorder selectRecentAndIntegral(MyorderExample example);;-->
+  <select id="selectRecentAndIntegral" parameterType="java.lang.Integer" resultMap="RecentAndIntegralResultMap">
+    select
+ 
+    <include refid="RecentAndIntegral_Column_List" />
+    FROM myorder m
+	LEFT JOIN or_good o ON m.or_id = o.go_orid
+	LEFT JOIN good g ON g.go_id = o.go_goodid
+	LEFT JOIN go_picture p ON p.pi_goodid = g.go_id
+	WHERE
+	(or_buytype = 1 or or_buytype = 2)
+	AND or_expendval != 0
+	AND or_type = 1 
+	AND  or_couponid = 0
+	AND or_memberid =#{record,jdbcType=INTEGER}
+
+  	order by m.or_id DESC LIMIT 1
+
+  </select>
+
+  
+  
+  
+  
+  <!--  List<Myorder> selectByExampleWithAll(MyorderExample example);-->
+    <select id="selectByExampleWithAll" resultMap="WithAllResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="WithAll_Column_List" />
+    from myorder m
+	left join or_good o 
+	on m.or_id = o.go_orid
+	LEFT JOIN good g
+	ON o.go_goodid = g.go_id
+	LEFT JOIN go_kind k
+	ON o.go_kindid = k.ki_id
+	LEFT JOIN go_paytype p
+	ON p.pt_goodid = g.go_id
+	LEFT JOIN go_picture i
+	ON i.pi_goodid= g.go_id
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause} DESC 
+    </if>
+  </select>
+  
+  
+  
+  <select id="selectByExample" parameterType="com.ceshi.bean.MyorderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from myorder
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from myorder
+    where or_id = #{orId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from myorder
+    where or_id = #{orId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ceshi.bean.MyorderExample">
+    delete from myorder
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ceshi.bean.Myorder">
+    insert into myorder (or_id, or_memberid, or_costmoney, 
+      or_date, or_state, or_sendtype, 
+      or_addressid, or_leavemsg, or_couponid, 
+      or_paytype, or_senddate, or_getdate, 
+      or_buytype, or_expendval, or_type
+      )
+    values (#{orId,jdbcType=INTEGER}, #{orMemberid,jdbcType=INTEGER}, #{orCostmoney,jdbcType=DOUBLE}, 
+      #{orDate,jdbcType=VARCHAR}, #{orState,jdbcType=INTEGER}, #{orSendtype,jdbcType=INTEGER}, 
+      #{orAddressid,jdbcType=INTEGER}, #{orLeavemsg,jdbcType=VARCHAR}, #{orCouponid,jdbcType=INTEGER}, 
+      #{orPaytype,jdbcType=INTEGER}, #{orSenddate,jdbcType=VARCHAR}, #{orGetdate,jdbcType=VARCHAR}, 
+      #{orBuytype,jdbcType=INTEGER}, #{orExpendval,jdbcType=INTEGER}, #{orType,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ceshi.bean.Myorder">
+    insert into myorder
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orId != null">
+        or_id,
+      </if>
+      <if test="orMemberid != null">
+        or_memberid,
+      </if>
+      <if test="orCostmoney != null">
+        or_costmoney,
+      </if>
+      <if test="orDate != null">
+        or_date,
+      </if>
+      <if test="orState != null">
+        or_state,
+      </if>
+      <if test="orSendtype != null">
+        or_sendtype,
+      </if>
+      <if test="orAddressid != null">
+        or_addressid,
+      </if>
+      <if test="orLeavemsg != null">
+        or_leavemsg,
+      </if>
+      <if test="orCouponid != null">
+        or_couponid,
+      </if>
+      <if test="orPaytype != null">
+        or_paytype,
+      </if>
+      <if test="orSenddate != null">
+        or_senddate,
+      </if>
+      <if test="orGetdate != null">
+        or_getdate,
+      </if>
+      <if test="orBuytype != null">
+        or_buytype,
+      </if>
+      <if test="orExpendval != null">
+        or_expendval,
+      </if>
+      <if test="orType != null">
+        or_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orId != null">
+        #{orId,jdbcType=INTEGER},
+      </if>
+      <if test="orMemberid != null">
+        #{orMemberid,jdbcType=INTEGER},
+      </if>
+      <if test="orCostmoney != null">
+        #{orCostmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="orDate != null">
+        #{orDate,jdbcType=VARCHAR},
+      </if>
+      <if test="orState != null">
+        #{orState,jdbcType=INTEGER},
+      </if>
+      <if test="orSendtype != null">
+        #{orSendtype,jdbcType=INTEGER},
+      </if>
+      <if test="orAddressid != null">
+        #{orAddressid,jdbcType=INTEGER},
+      </if>
+      <if test="orLeavemsg != null">
+        #{orLeavemsg,jdbcType=VARCHAR},
+      </if>
+      <if test="orCouponid != null">
+        #{orCouponid,jdbcType=INTEGER},
+      </if>
+      <if test="orPaytype != null">
+        #{orPaytype,jdbcType=INTEGER},
+      </if>
+      <if test="orSenddate != null">
+        #{orSenddate,jdbcType=VARCHAR},
+      </if>
+      <if test="orGetdate != null">
+        #{orGetdate,jdbcType=VARCHAR},
+      </if>
+      <if test="orBuytype != null">
+        #{orBuytype,jdbcType=INTEGER},
+      </if>
+      <if test="orExpendval != null">
+        #{orExpendval,jdbcType=INTEGER},
+      </if>
+      <if test="orType != null">
+        #{orType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ceshi.bean.MyorderExample" resultType="java.lang.Long">
+    select count(*) from myorder
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update myorder
+    <set>
+      <if test="record.orId != null">
+        or_id = #{record.orId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orMemberid != null">
+        or_memberid = #{record.orMemberid,jdbcType=INTEGER},
+      </if>
+      <if test="record.orCostmoney != null">
+        or_costmoney = #{record.orCostmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.orDate != null">
+        or_date = #{record.orDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orState != null">
+        or_state = #{record.orState,jdbcType=INTEGER},
+      </if>
+      <if test="record.orSendtype != null">
+        or_sendtype = #{record.orSendtype,jdbcType=INTEGER},
+      </if>
+      <if test="record.orAddressid != null">
+        or_addressid = #{record.orAddressid,jdbcType=INTEGER},
+      </if>
+      <if test="record.orLeavemsg != null">
+        or_leavemsg = #{record.orLeavemsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orCouponid != null">
+        or_couponid = #{record.orCouponid,jdbcType=INTEGER},
+      </if>
+      <if test="record.orPaytype != null">
+        or_paytype = #{record.orPaytype,jdbcType=INTEGER},
+      </if>
+      <if test="record.orSenddate != null">
+        or_senddate = #{record.orSenddate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orGetdate != null">
+        or_getdate = #{record.orGetdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orBuytype != null">
+        or_buytype = #{record.orBuytype,jdbcType=INTEGER},
+      </if>
+      <if test="record.orExpendval != null">
+        or_expendval = #{record.orExpendval,jdbcType=INTEGER},
+      </if>
+      <if test="record.orType != null">
+        or_type = #{record.orType,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update myorder
+    set or_id = #{record.orId,jdbcType=INTEGER},
+      or_memberid = #{record.orMemberid,jdbcType=INTEGER},
+      or_costmoney = #{record.orCostmoney,jdbcType=DOUBLE},
+      or_date = #{record.orDate,jdbcType=VARCHAR},
+      or_state = #{record.orState,jdbcType=INTEGER},
+      or_sendtype = #{record.orSendtype,jdbcType=INTEGER},
+      or_addressid = #{record.orAddressid,jdbcType=INTEGER},
+      or_leavemsg = #{record.orLeavemsg,jdbcType=VARCHAR},
+      or_couponid = #{record.orCouponid,jdbcType=INTEGER},
+      or_paytype = #{record.orPaytype,jdbcType=INTEGER},
+      or_senddate = #{record.orSenddate,jdbcType=VARCHAR},
+      or_getdate = #{record.orGetdate,jdbcType=VARCHAR},
+      or_buytype = #{record.orBuytype,jdbcType=INTEGER},
+      or_expendval = #{record.orExpendval,jdbcType=INTEGER},
+      or_type = #{record.orType,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ceshi.bean.Myorder">
+    update myorder
+    <set>
+      <if test="orMemberid != null">
+        or_memberid = #{orMemberid,jdbcType=INTEGER},
+      </if>
+      <if test="orCostmoney != null">
+        or_costmoney = #{orCostmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="orDate != null">
+        or_date = #{orDate,jdbcType=VARCHAR},
+      </if>
+      <if test="orState != null">
+        or_state = #{orState,jdbcType=INTEGER},
+      </if>
+      <if test="orSendtype != null">
+        or_sendtype = #{orSendtype,jdbcType=INTEGER},
+      </if>
+      <if test="orAddressid != null">
+        or_addressid = #{orAddressid,jdbcType=INTEGER},
+      </if>
+      <if test="orLeavemsg != null">
+        or_leavemsg = #{orLeavemsg,jdbcType=VARCHAR},
+      </if>
+      <if test="orCouponid != null">
+        or_couponid = #{orCouponid,jdbcType=INTEGER},
+      </if>
+      <if test="orPaytype != null">
+        or_paytype = #{orPaytype,jdbcType=INTEGER},
+      </if>
+      <if test="orSenddate != null">
+        or_senddate = #{orSenddate,jdbcType=VARCHAR},
+      </if>
+      <if test="orGetdate != null">
+        or_getdate = #{orGetdate,jdbcType=VARCHAR},
+      </if>
+      <if test="orBuytype != null">
+        or_buytype = #{orBuytype,jdbcType=INTEGER},
+      </if>
+      <if test="orExpendval != null">
+        or_expendval = #{orExpendval,jdbcType=INTEGER},
+      </if>
+      <if test="orType != null">
+        or_type = #{orType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where or_id = #{orId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ceshi.bean.Myorder">
+    update myorder
+    set or_memberid = #{orMemberid,jdbcType=INTEGER},
+      or_costmoney = #{orCostmoney,jdbcType=DOUBLE},
+      or_date = #{orDate,jdbcType=VARCHAR},
+      or_state = #{orState,jdbcType=INTEGER},
+      or_sendtype = #{orSendtype,jdbcType=INTEGER},
+      or_addressid = #{orAddressid,jdbcType=INTEGER},
+      or_leavemsg = #{orLeavemsg,jdbcType=VARCHAR},
+      or_couponid = #{orCouponid,jdbcType=INTEGER},
+      or_paytype = #{orPaytype,jdbcType=INTEGER},
+      or_senddate = #{orSenddate,jdbcType=VARCHAR},
+      or_getdate = #{orGetdate,jdbcType=VARCHAR},
+      or_buytype = #{orBuytype,jdbcType=INTEGER},
+      or_expendval = #{orExpendval,jdbcType=INTEGER},
+      or_type = #{orType,jdbcType=INTEGER}
+    where or_id = #{orId,jdbcType=INTEGER}
+  </update>
+</mapper>
