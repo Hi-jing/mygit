@@ -1,0 +1,55 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	padding: 0;
+	margin:  0 auto;
+	width: 100%;
+	height: 792px;
+	background: #e6edf5;
+}
+
+#home_up{
+	width: 100%;
+	height: 15%;
+	background: #e6edf5;
+	
+}
+.btn_nav {
+	float: left;
+	padding-left: 10%;
+	padding-top: 1%;
+}
+.btn_nav button span,.btn_nav button{
+	font-size: 16px;
+}
+#home_middle{
+	width: 100%;
+	height: 35%;
+	background: #e6edf5;
+	margin:0 auto;
+}
+
+#down{
+	width: 100%;
+	height: 50%;
+	background: #e6edf5;
+	margin:0 auto;
+}
+#e_title{
+	width: 100%;
+	height: 50px;
+}
+#e_title span{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#top_img{
+	position: relative;
+   	margin: 0px auto;
+	left: 40%;
+    top: 30%;
+    visibility: visible;
+}
+

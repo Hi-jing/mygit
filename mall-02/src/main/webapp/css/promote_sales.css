@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	padding: 0;
+	margin:  0 auto;
+	width: 100%;
+	height: 792px;
+	background: #e6edf5;
+}
+#sales_top{
+	margin:0 auto;
+	background: #e6edf5;
+	padding-top: 1%;
+	padding-left:1%;
+	padding-right:1%;
+}
+#sales_bottom{
+	margin:0 auto;
+	background: #e6edf5;
+	padding-top: 1%;
+	padding-left:1%;
+	padding-right:1%;
+}
+
+
+
+#memcard_growth_title{
+	font-size: 18px;
+	color: #3F9CD7;
+}
+.date_time{
+	font-size: 18px;
+	color: #3F9CD7;
+
+}
+
