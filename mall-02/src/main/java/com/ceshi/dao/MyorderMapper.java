@@ -36,4 +36,8 @@ public interface MyorderMapper {
     int updateByPrimaryKey(Myorder record);
 
 	List<Myorder> selectAllIntegralInfo();
+
+	List<Myorder> selectWithMem();
+
+	List<Myorder> selectByExampleWithMem(MyorderExample example);
 }

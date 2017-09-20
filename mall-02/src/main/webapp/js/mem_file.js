@@ -62,12 +62,10 @@ function time_opertion() {
 				autoclose : 1
 			});
 
-	
-	
-		//结束时间改变时触发事件
-	$('#end_time').datetimepicker().on('changeDate', function(ev){
-//		$("#growth_img").css("visibility", "visible");
-				$.ajax({
+	// 结束时间改变时触发事件
+	$('#end_time').datetimepicker().on('changeDate', function(ev) {
+		// $("#growth_img").css("visibility", "visible");
+		$.ajax({
 					url : getRootPath() + "/member/management/growthTrend",
 					type : "GET",
 					dataType : "json",
@@ -78,13 +76,13 @@ function time_opertion() {
 						order_growth_echart(result);
 					}
 				});
-		
+
 	});
-	
-		$('#start_time').datetimepicker().on('changeDate', function(ev){
-//			$("#growth_img").css("visibility", "visible");
-		
-				$.ajax({
+
+	$('#start_time').datetimepicker().on('changeDate', function(ev) {
+		// $("#growth_img").css("visibility", "visible");
+
+		$.ajax({
 					url : getRootPath() + "/member/management/growthTrend",
 					type : "GET",
 					dataType : "json",
@@ -95,9 +93,9 @@ function time_opertion() {
 						order_growth_echart(result);
 					}
 				});
-		
+
 	});
-	
+
 	$.ajax({
 				url : getRootPath() + "/member/management/growthTrend",
 				type : "GET",
@@ -348,14 +346,10 @@ function writeHtml(result) {
 			+ '<nav aria-label="Page navigation" style="float:right;margin-top: -3%;">'
 			+ '<ul class="pagination">'
 			+ '<li><a href="javascript:homePage();"> <span>首页</span>'
-			+ '</a></li>'
-			+ '<li id="pre"><a href="javascript:jumpPage('
+			+ '</a></li>' + '<li id="pre"><a href="javascript:jumpPage('
 			+ (result.extend.pageInfo.pageNum - 1)
-			+ ');"> <span>&laquo;</span>'
-			+ '</a></li>'
-			+ ''
-			+ getLiSum(result.extend.pageInfo.pages,
-					result.extend.pageInfo.pageNum) + ''
+			+ ');"> <span>&laquo;</span>' + '</a></li>' + ''
+			+ getLiSum(5, result.extend.pageInfo.pageNum) + ''
 			+ '<li><a href="javascript:jumpPage('
 			+ (result.extend.pageInfo.pageNum + 1)
 			+ ');"> <span>&raquo;</span>' + '</a></li>'
@@ -371,6 +365,7 @@ function writeHtml(result) {
  * 跳转表单信息
  */
 function jumpPage(fin) {
+
 	$.ajax({
 				url : getRootPath() + "/member/management/query",
 				type : "GET",
@@ -413,16 +408,30 @@ function homePage() {
  */
 function getLiSum(inter, inter02) {
 	var str = "";
-	for (var i = 0; i < inter; i++) {
-		if (inter02 == (i + 1)) {
-			str += '<li class="active"><a href="javascript:jumpPage(' + (i + 1)
-					+ ');">' + (i + 1) + '</a></li>';
-		} else {
-			str += '<li><a href="javascript:jumpPage(' + (i + 1) + ');">'
-					+ (i + 1) + '</a></li>';
-		}
+	if (inter02 < inter) {
+		for (var i = 0; i < inter; i++) {
+			if (inter02 == (i + 1)) {
+				str += '<li class="active"><a href="javascript:jumpPage('
+						+ (i + 1) + ');">' + (i + 1) + '</a></li>';
+			} else {
+				str += '<li><a href="javascript:jumpPage(' + (i + 1) + ');">'
+						+ (i + 1) + '</a></li>';
+			}
 
+		}
+	} else {
+		for (var i = (inter02-5); i < inter02; i++) {
+			if (inter02 == (i + 1)) {
+				str += '<li class="active"><a href="javascript:jumpPage('
+						+ (i + 1) + ');">' + (i + 1) + '</a></li>';
+			} else {
+				str += '<li><a href="javascript:jumpPage(' + (i + 1) + ');">'
+						+ (i + 1) + '</a></li>';
+			}
+
+		}
 	}
+
 	return str;
 }
 

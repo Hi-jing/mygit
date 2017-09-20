@@ -46,16 +46,16 @@
 
 				<div class="col-md-3 ">
 					<div class="input-group">
-						<input type="text" class="form-control" placeholder="搜索">
+						<input type="text" class="form-control" placeholder="搜索" id="search_text">
 						<span class="input-group-btn">
-							<button class="btn btn-default" type="button">搜索</button>
+							<button class="btn btn-default" type="button" id="search_or">搜索</button>
 						</span>
 					</div>
 				</div>
 
 
 				<div class="col-md-1 ">
-					<button type="button" class="btn btn-info">导出数据</button>
+					<button type="button" class="btn btn-info" id="export">导出数据</button>
 				</div>
 
 				<div class="col-md-4"></div>
@@ -74,122 +74,14 @@
 						<th>操作</th>
 					</tr>
 				</thead>
-				<tbody>
-
-					<tr>
-						<td>123123</td>
-						<td>和九条狗玩呢</td>
-						<td>2017/8/10&nbsp;&nbsp;11:50</td>
-						<td>200</td>
-						<td>vip2</td>
-						<td>136.5</td>
-						<td><span class="glyphicon glyphicon-zoom-in inlook"></span></td>
-
-					</tr>
-
-					<tr>
-						<td>123123</td>
-						<td>和九条狗玩呢</td>
-						<td>2017/8/10&nbsp;&nbsp;11:50</td>
-						<td>200</td>
-						<td>vip2</td>
-						<td>136.5</td>
-						<td><span class="glyphicon glyphicon-zoom-in inlook"></span></td>
-
-					</tr>
-
-
-					<tr>
-						<td>123123</td>
-						<td>和九条狗玩呢</td>
-						<td>2017/8/10&nbsp;&nbsp;11:50</td>
-						<td>200</td>
-						<td>vip2</td>
-						<td>136.5</td>
-						<td><span class="glyphicon glyphicon-zoom-in inlook"></span></td>
-
-					</tr>
-
-
-					<tr>
-						<td>123123</td>
-						<td>和九条狗玩呢</td>
-						<td>2017/8/10&nbsp;&nbsp;11:50</td>
-						<td>200</td>
-						<td>vip2</td>
-						<td>136.5</td>
-						<td><span class="glyphicon glyphicon-zoom-in inlook"></span></td>
-
-					</tr>
-
-
-					<tr>
-						<td>123123</td>
-						<td>和九条狗玩呢</td>
-						<td>2017/8/10&nbsp;&nbsp;11:50</td>
-						<td>200</td>
-						<td>vip2</td>
-						<td>136.5</td>
-						<td><span class="glyphicon glyphicon-zoom-in inlook"></span></td>
-
-					</tr>
-
-
-					<tr>
-						<td>123123</td>
-						<td>和九条狗玩呢</td>
-						<td>2017/8/10&nbsp;&nbsp;11:50</td>
-						<td>200</td>
-						<td>vip2</td>
-						<td>136.5</td>
-						<td><span class="glyphicon glyphicon-zoom-in inlook"></span></td>
-
-					</tr>
-
-
-					<tr>
-						<td>123123</td>
-						<td>和九条狗玩呢</td>
-						<td>2017/8/10&nbsp;&nbsp;11:50</td>
-						<td>200</td>
-						<td>vip2</td>
-						<td>136.5</td>
-						<td><span class="glyphicon glyphicon-zoom-in inlook"></span></td>
-
-					</tr>
-
+				<tbody id="mem_int_tbody">
 
 				</tbody>
 
 
 			</table>
+			<div class="col-md-12" id="form_bottom"></div>
 
-			<div class="col-md-12">
-				<div class="col-md-4">
-					<span style="float: left;">当前第1页，有210页，共有1047条记录</span>
-				</div>
-				<div class="col-md-8">
-					<nav aria-label="Page navigation"
-						style="float:right;margin-top: -3%;">
-					<ul class="pagination">
-						<li><a href="#"> <span>首页</span>
-						</a></li>
-						<li><a href="#"> <span>&laquo;</span>
-						</a></li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#"> <span>&raquo;</span>
-						</a></li>
-						<li><a href="#"> <span>尾页</span>
-						</a></li>
-					</ul>
-					</nav>
-				</div>
-
-			</div>
 		</div>
 
 	</div>

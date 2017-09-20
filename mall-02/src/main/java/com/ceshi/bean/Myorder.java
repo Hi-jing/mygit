@@ -47,12 +47,24 @@ public class Myorder {
     
     private Member member;
     
+    private Me_level me_level;
+    
+    
+    
     
     
     
     
 
-    public Member getMember() {
+    public Me_level getMe_level() {
+		return me_level;
+	}
+
+	public void setMe_level(Me_level me_level) {
+		this.me_level = me_level;
+	}
+
+	public Member getMember() {
 		return member;
 	}
 

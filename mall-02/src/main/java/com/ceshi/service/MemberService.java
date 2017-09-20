@@ -211,13 +211,13 @@ public class MemberService {
 	}
 
 	public List<Myorder> integralQuery() {
-		MyorderExample example = new MyorderExample();
-		com.ceshi.bean.MyorderExample.Criteria criteria = example.createCriteria();
-		criteria.andOrTypeEqualTo(1);
-		criteria.andOrBuytypeNotEqualTo(3);
-		criteria.andOrBuytypeNotEqualTo(4);
-		criteria.andOrExpendvalIsNotNull();
-		List<Myorder> oList = myorderMapper.selectByExample(example);
+//		MyorderExample example = new MyorderExample();
+//		com.ceshi.bean.MyorderExample.Criteria criteria = example.createCriteria();
+//		criteria.andOrTypeEqualTo(1);
+//		criteria.andOrBuytypeNotEqualTo(3);
+//		criteria.andOrBuytypeNotEqualTo(4);
+//		criteria.andOrExpendvalIsNotNull();
+		List<Myorder> oList = myorderMapper.selectWithMem();
 		return oList;
 	}
 
@@ -261,7 +261,7 @@ public class MemberService {
 		com.ceshi.bean.MyorderExample.Criteria criteria = example.createCriteria();
 
 		criteria.andOrIdEqualTo(Integer.valueOf(like));
-		List<Myorder> list = myorderMapper.selectByExample(example);
+		List<Myorder> list = myorderMapper.selectByExampleWithMem(example);
 		return list;
 	}
 

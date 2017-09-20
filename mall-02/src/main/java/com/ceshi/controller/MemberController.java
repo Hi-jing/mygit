@@ -355,7 +355,8 @@ public class MemberController {
 	@ResponseBody
 	public Msg searchOrder(@RequestParam("like") String like) {
 		List<Myorder> list = memberService.searchOrder(like);
-		return Msg.success().add("list", list);
+		PageInfo pageInfo = new PageInfo(list, 7);// 5：连续显示的页数
+		return Msg.success().add("pageInfo", pageInfo);
 	}
 	
 	
