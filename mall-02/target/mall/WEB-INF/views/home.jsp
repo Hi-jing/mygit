@@ -86,7 +86,7 @@
 					</div>
 					<ul class='second'>
 						<li value="mem_care.jsp"><span class="glyphicon glyphicon-triangle-right"></span>会员关怀</li>
-						<li value="mem_visit.jsp"><span class="glyphicon glyphicon-triangle-right"></span>会员回访</li>
+<!-- 						<li value="mem_visit.jsp"><span class="glyphicon glyphicon-triangle-right"></span>会员回访</li> -->
 
 					</ul>
 				</li>

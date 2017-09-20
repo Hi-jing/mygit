@@ -86,7 +86,7 @@
 													<div class="form-group">
 														<button type="button" class="btn btn-primary">分析占比</button>
 														<button class="btn btn-warning" id="reset-deep"
-															type="button">&nbsp;&nbsp;&nbsp;&nbsp;清空&nbsp;&nbsp;&nbsp;&nbsp;</button>
+															type="button">&nbsp;&nbsp;&nbsp;&nbsp;重置&nbsp;&nbsp;&nbsp;&nbsp;</button>
 
 													</div>
 												</div>

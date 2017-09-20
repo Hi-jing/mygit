@@ -86,7 +86,7 @@
 										<a href="#" class="btn btn-default">统一分析</a>
 									</div>
 									<div class="col-md-1">
-										<a href="javascript:warning();" class="btn btn-default">警示</a>
+<!-- 										<a href="javascript:warning();" class="btn btn-default">警示</a> -->
 									</div>
 								</div>
 								<div class="col-md-12">
@@ -96,7 +96,7 @@
 									<thead>
 
 										<tr style="background: #EFEDED;">
-											<th><input type="checkbox" id="re_all"></th>
+<!-- 											<th><input type="checkbox" id="re_all"></th> -->
 											<th>会员昵称</th>
 											<th>姓名</th>
 											<th>地区</th>
@@ -109,53 +109,53 @@
 									<tbody>
 
 										<tr>
-											<td><input type="checkbox" name="re_bar"></td>
+<!-- 											<td><input type="checkbox" name="re_bar"></td> -->
 											<td>和九条狗玩呢</td>
 											<td>林统东</td>
 											<td>雷州</td>
 											<td>80</td>
-											<td><a href="#">消费分析</a></td>
+											<td><a href="#">消费分析</a>&nbsp;&nbsp;&nbsp;<a href="#">收入支出分析</a></td>
 										</tr>
 
 										<tr>
-											<td><input type="checkbox" name="re_bar"></td>
+<!-- 											<td><input type="checkbox" name="re_bar"></td> -->
 											<td>和九条狗玩呢</td>
 											<td>林统东</td>
 											<td>雷州</td>
 											<td>80</td>
-											<td><a href="#">消费分析</a></td>
+											<td><a href="#">消费分析</a>&nbsp;&nbsp;&nbsp;<a href="#">收入支出分析</a></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="re_bar"></td>
+<!-- 											<td><input type="checkbox" name="re_bar"></td> -->
 											<td>和九条狗玩呢</td>
 											<td>林统东</td>
 											<td>雷州</td>
 											<td>80</td>
-											<td><a href="#">消费分析</a></td>
+										<td><a href="#">消费分析</a>&nbsp;&nbsp;&nbsp;<a href="#">收入支出分析</a></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="re_bar"></td>
+<!-- 											<td><input type="checkbox" name="re_bar"></td> -->
 											<td>和九条狗玩呢</td>
 											<td>林统东</td>
 											<td>雷州</td>
 											<td>80</td>
-											<td><a href="#">消费分析</a></td>
+											<td><a href="#">消费分析</a>&nbsp;&nbsp;&nbsp;<a href="#">收入支出分析</a></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="re_bar"></td>
+<!-- 											<td><input type="checkbox" name="re_bar"></td> -->
 											<td>和九条狗玩呢</td>
 											<td>林统东</td>
 											<td>雷州</td>
 											<td>80</td>
-											<td><a href="#">消费分析</a></td>
+											<td><a href="#">消费分析</a>&nbsp;&nbsp;&nbsp;<a href="#">收入支出分析</a></td>
 										</tr>
 										<tr>
-											<td><input type="checkbox" name="re_bar"></td>
+<!-- 											<td><input type="checkbox" name="re_bar"></td> -->
 											<td>和九条狗玩呢</td>
 											<td>林统东</td>
 											<td>雷州</td>
 											<td>80</td>
-											<td><a href="#">消费分析</a></td>
+											<td><a href="#">消费分析</a>&nbsp;&nbsp;&nbsp;<a href="#">收入支出分析</a></td>
 										</tr>
 
 

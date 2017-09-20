@@ -40,7 +40,7 @@
     
     <!-- 指定联合查询的部门字段的封装 -->
     <association property="or_good" javaType="com.ceshi.bean.Or_good">
-    	<id column="go_id" jdbcType="INTEGER" property="goId" />
+    	
 	    <result column="go_orid" jdbcType="INTEGER" property="goOrid" />
 	    <result column="go_goodid" jdbcType="INTEGER" property="goGoodid" />
 	    <result column="go_kindid" jdbcType="INTEGER" property="goKindid" />
@@ -251,7 +251,7 @@
   
   <sql id="WithAll_Column_List">
     m.or_id, m.or_memberid, m.or_costmoney, m.or_date, m.or_state, m.or_sendtype, m.or_addressid, m.or_leavemsg, m.or_couponid, m.or_paytype, m.or_senddate, m.or_getdate, m.or_buytype, m.or_expendval, m.or_type,
-	o.go_id,o.go_orid,o.go_goodid,o.go_kindid,o.go_buysum,
+	o.go_orid,o.go_goodid,o.go_kindid,o.go_buysum,
 	g.go_id,g.go_type,g.go_name,g.go_looksum,g.go_buysum,g.go_total,
 	k.ki_id,k.ki_goodid,k.ki_name,k.ki_nowprice,k.ki_preprice,k.ki_state,k.ki_addmoney,
 	p.pt_id,p.pt_goodid,p.pt_name,p.pt_needintegral,p.pt_startdate,p.pt_overdate,p.pt_addmoney,
@@ -315,7 +315,7 @@
 	LEFT JOIN good g
 	ON o.go_goodid = g.go_id
 	LEFT JOIN go_kind k
-	ON o.go_kindid = k.ki_id
+	ON o.go_goodid = k.ki_goodid
 	LEFT JOIN go_paytype p
 	ON p.pt_goodid = g.go_id
 	LEFT JOIN go_picture i
@@ -341,7 +341,7 @@
       <include refid="Example_Where_Clause" />
     </if>
     <if test="orderByClause != null">
-      order by ${orderByClause}
+      order by ${orderByClause} desc
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

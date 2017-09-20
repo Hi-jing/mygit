@@ -122,11 +122,14 @@
     </association>
     
     <association property="go_pictureWithBLOBs" javaType="com.ceshi.bean.Go_pictureWithBLOBs">
+    	<result column="pi_sl" jdbcType="LONGVARBINARY" property="piSl" />
     	<result column="pi_hang" jdbcType="LONGVARBINARY" property="piHang" />
     	<result column="pi_detail" jdbcType="LONGVARBINARY" property="piDetail" />
     </association>
     
     <association property="go_kind" javaType="com.ceshi.bean.Go_kind">
+    	<id column="ki_id" jdbcType="INTEGER" property="kiId" />
+    	<result column="ki_name" jdbcType="VARCHAR" property="kiName" />
 	    <result column="ki_nowprice" jdbcType="DOUBLE" property="kiNowprice" />
 	    <result column="ki_preprice" jdbcType="DOUBLE" property="kiPreprice" />
     </association>
@@ -221,7 +224,7 @@
   </sql>
   
      <sql id="Details_Column_List">
-  g.go_id,g.go_name,g.go_buysum,k.ki_nowprice,k.ki_preprice,y.pt_name,p.pi_hang,p.pi_detail
+  g.go_id,g.go_name,g.go_buysum,k.ki_nowprice,k.ki_id,k.ki_name,k.ki_preprice,y.pt_name,p.pi_sl,p.pi_hang,p.pi_detail
   </sql>
   
   
