@@ -407,6 +407,19 @@ public class MemberController {
 	
 	
 	/**
+	 * 根据会员id得到会员等级信息
+	 */
+	@RequestMapping(value = "/member/management/level/getLevelMsg", method = RequestMethod.GET)
+	@ResponseBody
+	public Msg getLevelMsg(@RequestParam("leId") int leid ) {
+		Me_level level   = memberService.getLevelMsg(leid);
+		return Msg.success().add("levelmsg",level);
+		
+	}
+	
+	
+	
+	/**
 	 * 会员等级管理表根据等级id修改信息
 	 */
 	@RequestMapping(value = "/member/management/level/editMsg", method = RequestMethod.GET)

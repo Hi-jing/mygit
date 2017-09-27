@@ -244,15 +244,11 @@ public class MemberService {
 	}
 
 	public Myorder getOrderDetails(int id) {
-		List<Myorder> list = myorderMapper.selectAllIntegralInfo();
-		Myorder myorder = null;
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getOrId() == id) {
-				myorder = list.get(i);
-			}
-
-		}
-		return myorder;
+		MyorderExample example = new MyorderExample();
+		com.ceshi.bean.MyorderExample.Criteria criteria = example.createCriteria();
+		criteria.andOrIdEqualTo(id);
+		List<Myorder> list = myorderMapper.selectWithMemAndAdd(example);
+		return list.get(0);
 
 	}
 
@@ -261,6 +257,14 @@ public class MemberService {
 		com.ceshi.bean.MyorderExample.Criteria criteria = example.createCriteria();
 
 		criteria.andOrIdEqualTo(Integer.valueOf(like));
+		/*
+		 * WHERE o.or_expendval !=0
+	and (o.or_buytype = 1 OR o.or_buytype = 2)
+	AND o.or_type =1
+		 */
+		criteria.andOrExpendvalNotEqualTo(0);
+		criteria.andOrBuytypeBetween(1, 2);
+		criteria.andOrTypeEqualTo(1);
 		List<Myorder> list = myorderMapper.selectByExampleWithMem(example);
 		return list;
 	}
@@ -328,6 +332,11 @@ public class MemberService {
 		Criteria criteria = example.createCriteria();
 		criteria.andMePhoneEqualTo(phone);
 		return memberMapper.selectByExample(example).get(0).getMeNickname();
+	}
+
+	public Me_level getLevelMsg(int leid) {
+		Me_level me_level = me_levelMapper.selectByPrimaryKey(leid);
+		return me_level;
 	}
 
 }

@@ -40,4 +40,6 @@ public interface MyorderMapper {
 	List<Myorder> selectWithMem();
 
 	List<Myorder> selectByExampleWithMem(MyorderExample example);
+
+	List<Myorder> selectWithMemAndAdd(MyorderExample example);
 }

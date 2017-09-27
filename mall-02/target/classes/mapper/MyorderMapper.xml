@@ -327,6 +327,23 @@
   </select>
   
   
+  
+   <!--  List<Myorder> selectWithMemAndAdd();;-->
+  <select id="selectWithMemAndAdd" parameterType="com.ceshi.bean.MyorderExample" resultMap="AllIntegralInfoResultMap">
+    SELECT *
+	FROM myorder o 
+	LEFT JOIN member m ON m.me_id = o.or_memberid
+	LEFT JOIN me_address a on a.ad_id = o.or_addressid
+	
+	 <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause} desc
+    </if>
+  </select>
+  
+  
    
   
    <sql id="RecentAndIntegral_Column_List">
@@ -359,6 +376,9 @@
     SELECT * from myorder o 
 	LEFT JOIN member m ON o.or_memberid =  m.me_id
 	LEFT JOIN me_level l ON m.me_levelid = l.le_id
+	WHERE o.or_expendval !=0
+	and (o.or_buytype = 1 OR o.or_buytype = 2)
+	AND o.or_type =1
   </select>
   
   
@@ -367,6 +387,7 @@
    	SELECT * from myorder o 
 	LEFT JOIN member m ON o.or_memberid =  m.me_id
 	LEFT JOIN me_level l ON m.me_levelid = l.le_id
+
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
