@@ -249,10 +249,16 @@ public class MemberController {
 	@ResponseBody
 	public Msg deleteMemBatch(@RequestParam("allMeId") String allMeId) {
 		String[] sourceStrArray = allMeId.split(",");
+		boolean b = false;
 		for (int i = 0; i < sourceStrArray.length; i++) {
-			memberService.deleteMemBatch(Integer.valueOf(sourceStrArray[i]));
+			 b = memberService.deleteMemBatch(Integer.valueOf(sourceStrArray[i]));
 		}
-		return Msg.success();
+		if (b) {
+			return Msg.success();
+		}else{
+			return Msg.fail();
+		}
+		
 	}
 
 	/**
@@ -450,6 +456,20 @@ public class MemberController {
 		return Msg.success().add("pageInfo", pageInfo);
 		
 	}
+	
+	
+	/**
+	 * 积分营销中的积分换购分析
+	 */
+	@RequestMapping(value = "/member/integral/serviceExchange/getChartInfo", method = RequestMethod.GET)
+	@ResponseBody
+	public Msg getChartInfo(@RequestParam("memid") int memid) {
+		Map<String, Integer> map =  memberService.getChartInfo(memid);
+		return Msg.success().add("map", map);
+		
+	}
+	
+	
 	
 	
 	

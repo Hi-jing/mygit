@@ -1,5 +1,7 @@
 package com.ceshi.bean;
 
+import org.aspectj.weaver.AjAttribute.PrivilegedAttribute;
+
 public class Go_kind {
     private Integer kiId;
 
@@ -15,6 +17,7 @@ public class Go_kind {
 
     private Double kiAddmoney;
     
+
 
     public Go_kind(Integer kiId, Integer kiGoodid, String kiName, Double kiNowprice, Double kiPreprice, Integer kiState,
 			Double kiAddmoney) {

@@ -232,7 +232,13 @@ function exportMemData() {
 							dataType : "json",
 							data : "allMeId=" + allMyAttr,
 							success : function(result) {
-								getMemFile();
+								if(result.code == 100){
+									alert("删除成功！");
+									getMemFile();
+								}else{
+									alert("删除失败！");
+								}
+								
 							}
 						});
 

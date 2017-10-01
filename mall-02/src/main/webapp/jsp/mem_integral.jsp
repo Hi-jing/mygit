@@ -99,11 +99,11 @@
 							<p class="text-primary" style="font-size: 18px;">会员等级个数:</p>
 						</div>
 						<div class="col-md-4 col-md-pull-3">
-							<select class="form-control">
-								<option>4</option>
-								<option>5</option>
-								<option>6</option>
-								<option>7</option>
+							<select class="form-control" id="select_num">
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
 							</select>
 						</div>
 					</div>
@@ -111,7 +111,7 @@
 
 				</div>
 				<div class="col-md-4 col-md-pull-1">
-					<button type="button" class="btn btn-primary">应用</button>
+					<button type="button" class="btn btn-primary" id="apply">应用</button>
 				</div>
 
 
@@ -232,7 +232,7 @@
 									<label for="inputEmail3" class="col-sm-2 control-label">等级：</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control" id="input_vip"
-											placeholder="等级">
+											placeholder="等级" name="lePhase">
 									</div>
 								</div>
 								<div class="form-group">
@@ -246,7 +246,7 @@
 								<div class="form-group">
 									<label for="inputPassword3" class="col-sm-2 control-label">折扣：</label>
 									<div class="col-sm-10">
-										<select class="form-control" style="width: 150px;" id="select_level">
+										<select class="form-control" style="width: 150px;" id="select_level" name="leDiscount">
 										<option value="10" >100%</option>
 										<option value="9.5">95%</option>
 										<option value="9">90%</option>
@@ -262,7 +262,7 @@
 									<label for="inputPassword3" class="col-sm-2 control-label">成长值：</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control"
-											id="input_val" placeholder="成长值">
+											id="input_val" placeholder="成长值" name="leNeedgrowthvalue">
 									</div>
 								</div>
 
@@ -274,7 +274,7 @@
 				<div class="modal-footer">
 					 
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary">修改</button>
+					<button type="button" class="btn btn-primary" id="changeMsg">修改</button>
 				</div>
 
 			</div>

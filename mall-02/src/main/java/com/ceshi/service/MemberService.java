@@ -171,8 +171,9 @@ public class MemberService {
 		return member;
 	}
 
-	public void deleteMemBatch(int id) {
-		memberMapper.deleteByPrimaryKey(id);
+	public boolean deleteMemBatch(int id) {
+		int b = memberMapper.deleteByPrimaryKey(id);
+		return b!=0;
 	}
 
 	public List<Integer> growthTrend(String stTime, List<Date> list, String eTime) {
@@ -299,8 +300,8 @@ public class MemberService {
 	}
 
 	public boolean levelEditMsg(Me_level me_level) {
-		me_levelMapper.updateByPrimaryKeySelective(me_level);
-		return false;
+		int i = me_levelMapper.updateByPrimaryKeySelective(me_level);
+		return i!=0;
 	}
 
 	public List<Member> getTabelInfo() {
@@ -337,6 +338,39 @@ public class MemberService {
 	public Me_level getLevelMsg(int leid) {
 		Me_level me_level = me_levelMapper.selectByPrimaryKey(leid);
 		return me_level;
+	}
+
+	/*
+	 * 1、查询0元换购
+	 * 2、查询补差换购
+	 * 3、查询普通消费
+	 */
+	public Map<String, Integer> getChartInfo(int memid) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("o_rmb_for", getSum(memid,1));
+		map.put("senders_for", getSum(memid,2));
+		map.put("regular_consumption", getSum(memid,3));
+		return map;
+	}
+	
+	public int getSum(int memid,int type) {
+		MyorderExample example = new MyorderExample();
+		com.ceshi.bean.MyorderExample.Criteria criteria = example.createCriteria();
+		criteria.andOrMemberidEqualTo(memid);
+		if (type == 3) {
+			criteria.andOrTypeEqualTo(2);
+		}else if (type == 2) {
+			criteria.andOrExpendvalIsNotNull();
+			criteria.andOrCostmoneyNotEqualTo(0.0);
+			criteria.andOrTypeEqualTo(1);
+		}else{
+			criteria.andOrExpendvalIsNotNull();
+			criteria.andOrCostmoneyEqualTo(0.0);
+			criteria.andOrTypeEqualTo(1);
+		}
+		
+		int b = (int) myorderMapper.countByExample(example);
+		return b ;
 	}
 
 }

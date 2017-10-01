@@ -105,7 +105,7 @@
 
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="se_tb">
 
 								<tr>
 									<td><input type="checkbox" name="se_sebar"></td>
@@ -615,18 +615,16 @@
 								<div class="col-md-12">
 									<div class="col-md-6">
 
-										<select class="form-control" style="width: 150px;">
-											<option>会员昵称</option>
-											<option>会员姓名</option>
-											<option>会员手机号</option>
-											<option>忠诚度</option>
+										<select class="form-control" style="width: 150px;" id="search_select">
+											<option value="2">会员昵称</option>
+											<option value="3">会员姓名</option>
 										</select>
 									</div>
 									<div class="col-md-6 col-md-pull-2">
 										<div class="input-group">
-											<input type="text" class="form-control" placeholder="搜索">
+											<input type="text" class="form-control" placeholder="搜索" id="searchInp">
 											<span class="input-group-btn">
-												<button class="btn btn-default" type="button">搜索</button>
+												<button class="btn btn-default" type="button" id="searchBtn">搜索</button>
 											</span>
 										</div>
 									</div>
@@ -647,107 +645,14 @@
 
 										</tr>
 									</thead>
-									<tbody>
-
-										<tr>
-											<td>和九条狗玩呢</td>
-											<td>林统东</td>
-											<td>80</td>
-											<td>13005666711</td>
-											<td><a href="#">饼图分析</a></td>
-										</tr>
-
-										<tr>
-											<td>和九条狗玩呢</td>
-											<td>林统东</td>
-											<td>80</td>
-											<td>13005666711</td>
-											<td><a href="#">饼图分析</a></td>
-										</tr>
-
-
-										<tr>
-											<td>和九条狗玩呢</td>
-											<td>林统东</td>
-											<td>80</td>
-											<td>13005666711</td>
-											<td><a href="#">饼图分析</a></td>
-										</tr>
-
-
-
-										<tr>
-											<td>和九条狗玩呢</td>
-											<td>林统东</td>
-											<td>80</td>
-											<td>13005666711</td>
-											<td><a href="#">饼图分析</a></td>
-										</tr>
-
-
-										<tr>
-											<td>和九条狗玩呢</td>
-											<td>林统东</td>
-											<td>80</td>
-											<td>13005666711</td>
-											<td><a href="#">饼图分析</a></td>
-										</tr>
-
-
-										<tr>
-											<td>和九条狗玩呢</td>
-											<td>林统东</td>
-											<td>80</td>
-											<td>13005666711</td>
-											<td><a href="#">饼图分析</a></td>
-										</tr>
-
-										<tr>
-											<td>和九条狗玩呢</td>
-											<td>林统东</td>
-											<td>80</td>
-											<td>13005666711</td>
-											<td><a href="#">饼图分析</a></td>
-										</tr>
-
-
-										<tr>
-											<td>和九条狗玩呢</td>
-											<td>林统东</td>
-											<td>80</td>
-											<td>13005666711</td>
-											<td><a href="#">饼图分析</a></td>
-										</tr>
-
-
+									<tbody id="se_memtbody">
+									
 									</tbody>
 
 
 								</table>
 								
-								<div class="col-md-12">
-									<div class="col-md-4">
-										<span style="float: left; font-size: 10px;padding-top: 20px;">共210页，有1047条记录</span>
-									</div>
-									<div class="col-md-8">
-											<nav aria-label="Page navigation" style="float: right;">
-											<ul class="pagination pagination-sm">
-												<li class="previous"><a href="#"> <span>首页</span>
-												</a></li>
-												<li><a href="#"> <span>&laquo;</span>
-												</a></li>
-												<li><a href="#">1</a></li>
-												<li><a href="#">2</a></li>
-												<li><a href="#">3</a></li>
-												<li><a href="#"> <span>&raquo;</span>
-												</a></li>
-												<li class="next"><a href="#"> <span>尾页</span>
-												</a></li>
-											</ul>
-											</nav>
-
-									</div>
-
+								<div class="col-md-12" id="form_bottom02">
 								</div>
 								
 							</div>

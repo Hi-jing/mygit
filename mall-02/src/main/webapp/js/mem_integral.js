@@ -1,6 +1,8 @@
 // JavaScript Document
 // 显示当周的订单的记录情况，运用拆线图和条形图切换展示数据
 var recordRow;
+var leid;
+// var le_sum;
 $(document).ready(function() {
 			in_operation();
 			initialize();
@@ -41,37 +43,12 @@ function getLevelName(re) {
 	}
 }
 
+/*
+ * 得到会员等级管理表信息
+ */
+function getLevelMsg() {
+	$("#level_tabel").empty();
 
-
-function in_operation() {
-
-	$(document).on("click", ".inedit", function() {
-		/*
-		 * 根据会员id得到会员等级信息
-		 */
-		$.ajax({
-					url : getRootPath()
-							+ "/member/management/level/getLevelMsg",
-					type : "GET",
-					dataType : "json",
-					data : "leId=" + $(this).attr("myAttr"),
-					success : function(result) {
-						if (result.code == 100) {
-							$("#input_vip").val(result.extend.levelmsg.lePhase);
-							$("#input_name")
-									.val(getLevelName(result.extend.levelmsg.lePhase));
-							$("#input_val")
-									.val(result.extend.levelmsg.leNeedgrowthvalue);
-							$("#select_level").val([result.extend.levelmsg.leDiscount]);
-						}
-					}
-				});
-		$("#edit_memLevel_modal").modal("show");
-	});
-
-	/*
-	 * 得到会员等级管理表信息
-	 */
 	$.ajax({
 				url : getRootPath() + "/member/management/level",
 				type : "GET",
@@ -79,9 +56,71 @@ function in_operation() {
 				success : function(result) {
 					if (result.code == 100) {
 						writeLevel(result);
+						$("#select_num").val([result.extend.list.length]);
 					}
 				}
 			});
+
+}
+
+function in_operation() {
+	getLevelMsg();
+
+	$(document).on("click", "#apply", function() {
+
+		$.ajax({
+			url : getRootPath() + "/member/management/level/edit",
+			type : "GET",
+			dataType : "json",
+			data : "number="+$("#select_num").val(),
+			success : function(result) {
+				if (result.code == 100) {
+					getLevelMsg();
+				}
+			}
+		});
+	});
+
+	$(document).on("click", "#changeMsg", function() {
+
+		// alert($("#edit_memLevel_modal form").serialize()+"&leId="+leid);
+		$.ajax({
+			url : getRootPath() + "/member/management/level/editMsg",
+			type : "GET",
+			dataType : "json",
+			data : $("#edit_memLevel_modal form").serialize() + "&leId=" + leid,
+			success : function(result) {
+				if (result.code == 100) {
+					$("#edit_memLevel_modal").modal("hide");
+					getLevelMsg();
+				}
+			}
+		});
+	});
+
+	$(document).on("click", ".inedit", function() {
+		/*
+		 * 根据会员id得到会员等级信息
+		 */
+		$.ajax({
+			url : getRootPath() + "/member/management/level/getLevelMsg",
+			type : "GET",
+			dataType : "json",
+			data : "leId=" + $(this).attr("myAttr"),
+			success : function(result) {
+				if (result.code == 100) {
+					leid = result.extend.levelmsg.leId;
+					$("#input_vip").val(result.extend.levelmsg.lePhase);
+					$("#input_name")
+							.val(getLevelName(result.extend.levelmsg.lePhase));
+					$("#input_val")
+							.val(result.extend.levelmsg.leNeedgrowthvalue);
+					$("#select_level").val([result.extend.levelmsg.leDiscount]);
+				}
+			}
+		});
+		$("#edit_memLevel_modal").modal("show");
+	});
 
 	$(document).on("mouseover", ".inlook", function() {
 				$(this).css("cursor", "pointer");
