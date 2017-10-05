@@ -99,13 +99,11 @@
      ,
     <include refid="Pilb" />
 FROM go_picture WHERE pi_goodid = ANY
-(select go_id
- FROM good as g WHERE go_buysum =  ANY 
-( select t.go_buysum from 
-(SELECT go_buysum  FROM good WHERE go_id = ANY
+( select t.go_id from 
+(SELECT go_id  FROM good WHERE go_id = ANY
 (SELECT  pt_goodid from go_paytype WHERE pt_name = 3) ORDER BY  go_buysum desc LIMIT 5)
  AS t
-))
+)
   </select>
   
   

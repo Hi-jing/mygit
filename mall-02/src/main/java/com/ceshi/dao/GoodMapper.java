@@ -64,4 +64,6 @@ public interface GoodMapper {
 	List<Good> selectByExampleWithLike(GoodExample example);
 
 	Good selectDetailsById(@Param("goodid")int goodid);
+
+	List<Good> getPromotionGood();
 }

@@ -75,7 +75,7 @@
 					<div role="tabpanel" class="tab-pane active" id="add_item">
 
 						<div class="col-md-12">
-							<form class="form-inline" id="good_form" method="post" enctype="multipart/form-data">
+							<form class="form-inline" id="good_form" >
 								<div class="col-md-12" style="padding-top: 30px;">
 									<div class="form-group">
 										<label>商品名称:&nbsp;&nbsp;</label> <input type="text"
@@ -241,16 +241,7 @@
 
 
 							<div class="col-md-1">
-								<button type="button" class="btn btn-warning">删除记录</button>
-							</div>
-
-							<div class="col-md-1">
-								<button type="button" class="btn btn-primary">&nbsp;&nbsp;应用&nbsp;&nbsp;</button>
-							</div>
-
-
-							<div class="col-md-1">
-								<button type="button" class="btn btn-info">导入数据</button>
+								<button type="button" class="btn btn-info" id="export_Good">导入数据</button>
 							</div>
 
 
@@ -262,11 +253,10 @@
 							<thead>
 
 								<tr style="background: #EFEDED;">
-									<th><input type="checkbox" id="se_se2all"></th>
 									<th>商品名称</th>
 									<th>商品类型</th>
 									<th>促销价</th>
-									<th>创建时间</th>
+									<th>销售量</th>
 									<th>库存量</th>
 									<th>状态</th>
 									<th>操作</th>
@@ -274,179 +264,15 @@
 
 								</tr>
 							</thead>
-							<tbody>
-
-								<tr>
-									<td><input type="checkbox" name="se_se2bar"></td>
-									<td>某名牌男装</td>
-									<td>服装</td>
-									<td>19.9</td>
-									<td>2017/8/10&nbsp;&nbsp;11:50</td>
-									<td>1000</td>
-									<td style="width: 100px;"><select class="form-control">
-											<option>上架</option>
-											<option>下架</option>
-									</select></td>
-									<td id="se_operation"><span
-										class="glyphicon glyphicon-zoom-in salelook"></span> <span
-										class="glyphicon glyphicon-trash saledelete"></span></td>
-								</tr>
-
-
-								<tr>
-									<td><input type="checkbox" name="se_se2bar"></td>
-									<td>某名牌男装</td>
-									<td>服装</td>
-									<td>19.9</td>
-									<td>2017/8/10&nbsp;&nbsp;11:50</td>
-									<td>1000</td>
-									<td style="width: 100px;"><select class="form-control">
-											<option>上架</option>
-											<option>下架</option>
-									</select></td>
-									<td id="se_operation"><span
-										class="glyphicon glyphicon-zoom-in salelook"></span> <span
-										class="glyphicon glyphicon-trash saledelete"></span></td>
-								</tr>
-
-
-								<tr>
-									<td><input type="checkbox" name="se_se2bar"></td>
-									<td>某名牌男装</td>
-									<td>服装</td>
-									<td>19.9</td>
-									<td>2017/8/10&nbsp;&nbsp;11:50</td>
-									<td>1000</td>
-									<td style="width: 100px;"><select class="form-control">
-											<option>上架</option>
-											<option>下架</option>
-									</select></td>
-									<td id="se_operation"><span
-										class="glyphicon glyphicon-zoom-in salelook"></span> <span
-										class="glyphicon glyphicon-trash saledelete"></span></td>
-								</tr>
-
-
-								<tr>
-									<td><input type="checkbox" name="se_se2bar"></td>
-									<td>某名牌男装</td>
-									<td>服装</td>
-									<td>19.9</td>
-									<td>2017/8/10&nbsp;&nbsp;11:50</td>
-									<td>1000</td>
-									<td style="width: 100px;"><select class="form-control">
-											<option>上架</option>
-											<option>下架</option>
-									</select></td>
-									<td id="se_operation"><span
-										class="glyphicon glyphicon-zoom-in salelook"></span> <span
-										class="glyphicon glyphicon-trash saledelete"></span></td>
-								</tr>
-
-
-								<tr>
-									<td><input type="checkbox" name="se_se2bar"></td>
-									<td>某名牌男装</td>
-									<td>服装</td>
-									<td>19.9</td>
-									<td>2017/8/10&nbsp;&nbsp;11:50</td>
-									<td>1000</td>
-									<td style="width: 100px;"><select class="form-control">
-											<option>上架</option>
-											<option>下架</option>
-									</select></td>
-									<td id="se_operation"><span
-										class="glyphicon glyphicon-zoom-in salelook"></span> <span
-										class="glyphicon glyphicon-trash saledelete"></span></td>
-								</tr>
-
-
-								<tr>
-									<td><input type="checkbox" name="se_se2bar"></td>
-									<td>某名牌男装</td>
-									<td>服装</td>
-									<td>19.9</td>
-									<td>2017/8/10&nbsp;&nbsp;11:50</td>
-									<td>1000</td>
-									<td style="width: 100px;"><select class="form-control">
-											<option>上架</option>
-											<option>下架</option>
-									</select></td>
-									<td id="se_operation"><span
-										class="glyphicon glyphicon-zoom-in salelook"></span> <span
-										class="glyphicon glyphicon-trash saledelete"></span></td>
-								</tr>
-
-
-								<tr>
-									<td><input type="checkbox" name="se_se2bar"></td>
-									<td>某名牌男装</td>
-									<td>服装</td>
-									<td>19.9</td>
-									<td>2017/8/10&nbsp;&nbsp;11:50</td>
-									<td>1000</td>
-									<td style="width: 100px;"><select class="form-control">
-											<option>上架</option>
-											<option>下架</option>
-									</select></td>
-									<td id="se_operation"><span
-										class="glyphicon glyphicon-zoom-in salelook"></span> <span
-										class="glyphicon glyphicon-trash saledelete"></span></td>
-								</tr>
-
-
-								<tr>
-									<td><input type="checkbox" name="se_se2bar"></td>
-									<td>某名牌男装</td>
-									<td>服装</td>
-									<td>19.9</td>
-									<td>2017/8/10&nbsp;&nbsp;11:50</td>
-									<td>1000</td>
-									<td style="width: 100px;"><select class="form-control">
-											<option>上架</option>
-											<option>下架</option>
-									</select></td>
-									<td id="se_operation"><span
-										class="glyphicon glyphicon-zoom-in salelook"></span> <span
-										class="glyphicon glyphicon-trash saledelete"></span></td>
-								</tr>
-
-
-
-
-
-
-
+							<tbody id="mem_care_tbody">
 
 							</tbody>
 
 
 						</table>
 
-						<div class="col-md-12">
-							<div class="col-md-4">
-								<span style="float: left;">当前第1页，有210页，共有1047条记录</span>
-							</div>
-							<div class="col-md-8">
-								<nav aria-label="Page navigation"
-									style="float:right;margin-top: -3%;">
-								<ul class="pagination">
-									<li><a href="#"> <span>首页</span>
-									</a></li>
-									<li><a href="#"> <span>&laquo;</span>
-									</a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#"> <span>&raquo;</span>
-									</a></li>
-									<li><a href="#"> <span>尾页</span>
-									</a></li>
-								</ul>
-								</nav>
-							</div>
+
+						<div class="col-md-12" id="form_bottom">
 
 						</div>
 

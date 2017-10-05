@@ -459,7 +459,7 @@ public class MemberController {
 	
 	
 	/**
-	 * 积分营销中的积分换购分析
+	 * 积分营销中的积分换购分析中的饼图中的数据查询
 	 */
 	@RequestMapping(value = "/member/integral/serviceExchange/getChartInfo", method = RequestMethod.GET)
 	@ResponseBody

@@ -142,6 +142,42 @@
   
   
   
+     <!--自定义-->
+  <resultMap id="GetPromotionGoodResultMap" type="com.ceshi.bean.Good">
+    <id column="go_id" jdbcType="INTEGER" property="goId" />
+    <result column="go_type" jdbcType="VARCHAR" property="goType" />
+    <result column="go_name" jdbcType="VARCHAR" property="goName" />
+    <result column="go_looksum" jdbcType="INTEGER" property="goLooksum" />
+    <result column="go_buysum" jdbcType="INTEGER" property="goBuysum" />
+    <result column="go_total" jdbcType="INTEGER" property="goTotal" />
+    
+    <!-- 指定联合查询的部门字段的封装 -->
+    <association property="go_paytype" javaType="com.ceshi.bean.Go_paytype">
+	     <id column="pt_id" jdbcType="INTEGER" property="ptId" />
+	    <result column="pt_goodid" jdbcType="INTEGER" property="ptGoodid" />
+	    <result column="pt_name" jdbcType="INTEGER" property="ptName" />
+	    <result column="pt_needintegral" jdbcType="INTEGER" property="ptNeedintegral" />
+	    <result column="pt_startdate" jdbcType="VARCHAR" property="ptStartdate" />
+	    <result column="pt_overdate" jdbcType="VARCHAR" property="ptOverdate" />
+	    <result column="pt_addmoney" jdbcType="DOUBLE" property="ptAddmoney" />
+	    <result column="pt_msg" jdbcType="VARCHAR" property="ptMsg" />
+    </association>
+    
+    <association property="go_kind" javaType="com.ceshi.bean.Go_kind">
+	    <id column="ki_id" jdbcType="INTEGER" property="kiId" />
+	    <result column="ki_goodid" jdbcType="INTEGER" property="kiGoodid" />
+	    <result column="ki_name" jdbcType="VARCHAR" property="kiName" />
+	    <result column="ki_nowprice" jdbcType="DOUBLE" property="kiNowprice" />
+	    <result column="ki_preprice" jdbcType="DOUBLE" property="kiPreprice" />
+	    <result column="ki_state" jdbcType="INTEGER" property="kiState" />
+	    <result column="ki_addmoney" jdbcType="DOUBLE" property="kiAddmoney" />
+    </association>
+    
+
+  </resultMap>
+  
+  
+  
 
 
     <!-- List<Good> selectZeroGood();-->
@@ -385,6 +421,15 @@ WHERE p.pt_name = 2 AND p.pt_needintegral !=0 AND k.ki_nowprice !=0
   </select>
   
   
+  <!--List<Good> getPromotionGood();-->
+  <select id="getPromotionGood"  resultMap="GetPromotionGoodResultMap">
+	 SELECT * FROM good g
+	LEFT JOIN go_kind k ON g.go_id = k.ki_goodid
+	LEFT JOIN go_paytype y ON g.go_id = y.pt_goodid
+	WHERE y.pt_name = 3
+ 
+
+  </select>
   
   
   

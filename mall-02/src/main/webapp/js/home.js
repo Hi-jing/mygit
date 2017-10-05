@@ -3,7 +3,7 @@ $(document).ready(function() {
 	var i;
 	var par_text;
 	
-	jump_page("service_and_exchange.jsp");
+	jump_page("mem_care.jsp");
 	
 	//获得根目录
 	function getRootPath() {

@@ -19,12 +19,12 @@ body{
 
 
 
-.salelook,.saledelete{
+.saleedit,.saledelete{
 	font-size: 18px;
 	padding-left: 5px;
 }
-.salelook{
-	color: #3F9CD7;
+.saleedit{
+	color: #0FA658;
 }
 .saledelete{
 	color: #F34475;

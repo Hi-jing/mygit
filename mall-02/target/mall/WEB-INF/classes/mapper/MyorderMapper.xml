@@ -183,6 +183,61 @@
   
   
   
+    <!--自定义-->
+  <resultMap id="WithMemResultMap" type="com.ceshi.bean.Myorder">
+    <id column="or_id" jdbcType="INTEGER" property="orId" />
+    <result column="or_memberid" jdbcType="INTEGER" property="orMemberid" />
+    <result column="or_costmoney" jdbcType="DOUBLE" property="orCostmoney" />
+    <result column="or_date" jdbcType="VARCHAR" property="orDate" />
+    <result column="or_state" jdbcType="INTEGER" property="orState" />
+    <result column="or_sendtype" jdbcType="INTEGER" property="orSendtype" />
+    <result column="or_addressid" jdbcType="INTEGER" property="orAddressid" />
+    <result column="or_leavemsg" jdbcType="VARCHAR" property="orLeavemsg" />
+    <result column="or_couponid" jdbcType="INTEGER" property="orCouponid" />
+    <result column="or_paytype" jdbcType="INTEGER" property="orPaytype" />
+    <result column="or_senddate" jdbcType="VARCHAR" property="orSenddate" />
+    <result column="or_getdate" jdbcType="VARCHAR" property="orGetdate" />
+    <result column="or_buytype" jdbcType="INTEGER" property="orBuytype" />
+    <result column="or_expendval" jdbcType="INTEGER" property="orExpendval" />
+    <result column="or_type" jdbcType="INTEGER" property="orType" />
+    
+    <!-- 指定联合查询的部门字段的封装 -->
+    <association property="member" javaType="com.ceshi.bean.Member">
+    	<id column="me_id" jdbcType="INTEGER" property="meId" />
+	    <result column="me_wxopenid" jdbcType="VARCHAR" property="meWxopenid" />
+	    <result column="me_qqopenid" jdbcType="VARCHAR" property="meQqopenid" />
+	    <result column="me_name" jdbcType="VARCHAR" property="meName" />
+	    <result column="me_sex" jdbcType="CHAR" property="meSex" />
+	    <result column="me_email" jdbcType="VARCHAR" property="meEmail" />
+	    <result column="me_register" jdbcType="VARCHAR" property="meRegister" />
+	    <result column="me_lastlogin" jdbcType="VARCHAR" property="meLastlogin" />
+	    <result column="me_headaddress" jdbcType="VARCHAR" property="meHeadaddress" />
+	    <result column="me_district" jdbcType="VARCHAR" property="meDistrict" />
+	    <result column="me_nickname" jdbcType="VARCHAR" property="meNickname" />
+	    <result column="me_phone" jdbcType="CHAR" property="mePhone" />
+	    <result column="me_brithday" jdbcType="VARCHAR" property="meBrithday" />
+	    <result column="me_loyalty" jdbcType="INTEGER" property="meLoyalty" />
+	    <result column="me_password" jdbcType="VARCHAR" property="mePassword" />
+	    <result column="me_identity" jdbcType="VARCHAR" property="meIdentity" />
+	    <result column="me_levelid" jdbcType="INTEGER" property="meLevelid" />
+    </association>
+    
+  
+    <association property="me_level" javaType="com.ceshi.bean.Me_level">
+    	 <id column="le_id" jdbcType="INTEGER" property="leId" />
+	    <result column="le_phase" jdbcType="CHAR" property="lePhase" />
+	    <result column="le_growthvalue" jdbcType="INTEGER" property="leGrowthvalue" />
+	    <result column="le_needgrowthvalue" jdbcType="INTEGER" property="leNeedgrowthvalue" />
+	    <result column="le_discount" jdbcType="DOUBLE" property="leDiscount" />
+    </association>
+    
+    
+  </resultMap>
+  
+  
+  
+  
+  
 
    
   
@@ -272,6 +327,23 @@
   </select>
   
   
+  
+   <!--  List<Myorder> selectWithMemAndAdd();;-->
+  <select id="selectWithMemAndAdd" parameterType="com.ceshi.bean.MyorderExample" resultMap="AllIntegralInfoResultMap">
+    SELECT *
+	FROM myorder o 
+	LEFT JOIN member m ON m.me_id = o.or_memberid
+	LEFT JOIN me_address a on a.ad_id = o.or_addressid
+	
+	 <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause} desc
+    </if>
+  </select>
+  
+  
    
   
    <sql id="RecentAndIntegral_Column_List">
@@ -299,6 +371,30 @@
   </select>
 
   
+  <!--List<Myorder> selectWithMem();-->
+   <select id="selectWithMem" resultMap="WithMemResultMap">
+    SELECT * from myorder o 
+	LEFT JOIN member m ON o.or_memberid =  m.me_id
+	LEFT JOIN me_level l ON m.me_levelid = l.le_id
+	WHERE o.or_expendval !=0
+	and (o.or_buytype = 1 OR o.or_buytype = 2)
+	AND o.or_type =1
+  </select>
+  
+  
+    <!--List<Myorder> selectByExampleWithMem(MyorderExample example);-->
+    <select id="selectByExampleWithMem" parameterType="com.ceshi.bean.MyorderExample" resultMap="WithMemResultMap">
+   	SELECT * from myorder o 
+	LEFT JOIN member m ON o.or_memberid =  m.me_id
+	LEFT JOIN me_level l ON m.me_levelid = l.le_id
+
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause} desc
+    </if>
+  </select>
   
   
   
@@ -329,6 +425,10 @@
   </select>
   
   
+
+  
+  
+  
   
   <select id="selectByExample" parameterType="com.ceshi.bean.MyorderExample" resultMap="BaseResultMap">
     select
@@ -344,6 +444,9 @@
       order by ${orderByClause} desc
     </if>
   </select>
+  
+  
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

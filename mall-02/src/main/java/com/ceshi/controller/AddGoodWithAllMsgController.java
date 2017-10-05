@@ -41,7 +41,7 @@ public class AddGoodWithAllMsgController {
 	@Autowired
 	AddGoodWithAllMsgService addGoodWithAllMsgService;
 	
-	@SuppressWarnings("unchecked")
+	//@SuppressWarnings("unchecked")
 	@RequestMapping(value="/saveGoodMsg",method=RequestMethod.POST)
 	@ResponseBody
 	public Msg saveGoodMsg(@Valid Good good,@Valid Go_kind go_kind,@Valid Go_paytype go_paytype,HttpSession session,BindingResult result){
