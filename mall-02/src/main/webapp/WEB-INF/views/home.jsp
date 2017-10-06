@@ -102,10 +102,10 @@
 					<ul class='second'>
 						<li value="consumption_analysis.jsp"><span class="glyphicon glyphicon-triangle-right"></span>消费分析</li>
 						<li value="regional_analysis.jsp"><span class="glyphicon glyphicon-triangle-right"></span>地域分析</li>
-						<li value="loyalty_analysis.jsp"><span class="glyphicon glyphicon-triangle-right"></span>忠诚度分析</li>
+<!-- 						<li value="loyalty_analysis.jsp"><span class="glyphicon glyphicon-triangle-right"></span>忠诚度分析</li> -->
 <!-- 						<li value="gift_exchange.jsp"><span class="glyphicon glyphicon-triangle-right"></span>礼品兑换分析</li> -->
 						<li value="grade_analysis.jsp"><span class="glyphicon glyphicon-triangle-right"></span>等级分析</li>
-						<li value="loss_warning.jsp"><span class="glyphicon glyphicon-triangle-right"></span>会员流失预警</li>
+<!-- 						<li value="loss_warning.jsp"><span class="glyphicon glyphicon-triangle-right"></span>会员流失预警</li> -->
 						<li value="group_analysis.jsp"><span class="glyphicon glyphicon-triangle-right"></span>会员群体分析</li>
 <!-- 						<li value="shoppingtime_analysis.jsp"><span class="glyphicon glyphicon-triangle-right"></span>购物时段分析</li> -->
 						<li value="shoppingamount_analysis.jsp"><span class="glyphicon glyphicon-triangle-right"></span>购物金额分析</li>
@@ -126,8 +126,8 @@
 					<ul class='second'>
 						<li value="inventory_analysis.jsp"><span class="glyphicon glyphicon-triangle-right"></span>商品库存排名</li>
 <!-- 						<li value="sale_rank.jsp"><span class="glyphicon glyphicon-triangle-right"></span>商品销售排名</li> -->
-						<li value="trend_analysis.jsp"><span class="glyphicon glyphicon-triangle-right"></span>品类销售与趋势</li>
-						<li value="promote_sales.jsp"><span class="glyphicon glyphicon-triangle-right"></span>推广与销售</li>
+<!-- 						<li value="trend_analysis.jsp"><span class="glyphicon glyphicon-triangle-right"></span>品类销售与趋势</li> -->
+<!-- 						<li value="promote_sales.jsp"><span class="glyphicon glyphicon-triangle-right"></span>推广与销售</li> -->
 
 					</ul>
 				</li>

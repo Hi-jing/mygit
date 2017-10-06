@@ -91,7 +91,7 @@
 									<div class="form-group">
 										<label>规格名称:&nbsp;&nbsp;</label> <input type="text"
 											class="form-control" placeholder="规格名称" name="kiName">
-										<label>&nbsp;&nbsp;（多个规格以；隔开）</label>
+<!-- 										<label>&nbsp;&nbsp;（多个规格以；隔开）</label> -->
 									</div>
 									<div class="form-group" style="padding-left: 30px;">
 										<label>商品类型:&nbsp;&nbsp;</label> <select class="form-control"

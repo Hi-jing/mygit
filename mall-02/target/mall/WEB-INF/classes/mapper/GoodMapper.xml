@@ -440,19 +440,16 @@ WHERE p.pt_name = 2 AND p.pt_needintegral !=0 AND k.ki_nowprice !=0
 	select 
 	<include refid="AllShow_Column_List" />
 
-    FROM good g 
+     FROM good g 
 	LEFT JOIN go_kind k on g.go_id = ki_goodid 
 	LEFT JOIN go_picture p ON g.go_id = p.pi_goodid
 	WHERE g.go_id = ANY 
-	(select go_id
-	FROM good as g WHERE go_buysum =  ANY 
-	( select t.go_buysum from 
-	(SELECT go_buysum  FROM good WHERE go_id = ANY
+	( select t.go_id from 
+	(SELECT go_buysum,go_id  FROM good WHERE go_id = ANY
 	(SELECT  pt_goodid from go_paytype WHERE pt_name = 1)
-	AND go_type = '女装' OR go_type = '男装'
+	AND (go_type = '女装' OR go_type = '男装')
 	 ORDER BY  go_buysum desc LIMIT 3)
-	 AS t
-	))
+	 AS t)
 
   </select>
   
@@ -467,15 +464,13 @@ WHERE p.pt_name = 2 AND p.pt_needintegral !=0 AND k.ki_nowprice !=0
 	LEFT JOIN go_kind k on g.go_id = ki_goodid 
 	LEFT JOIN go_picture p ON g.go_id = p.pi_goodid
 	WHERE g.go_id = ANY 
-	(select go_id
-	FROM good as g WHERE go_buysum =  ANY 
-	( select t.go_buysum from 
-	(SELECT go_buysum  FROM good WHERE go_id = ANY
+	( select t.go_id from 
+	(SELECT go_buysum,go_id  FROM good WHERE go_id = ANY
 	(SELECT  pt_goodid from go_paytype WHERE pt_name = 1)
 	AND go_type = '手机数码'
 	 ORDER BY  go_buysum desc LIMIT 3)
 	 AS t
-	))
+	)
 
   </select>
   

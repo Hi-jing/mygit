@@ -16,6 +16,7 @@ import com.ceshi.bean.Go_pictureWithBLOBs;
 import com.ceshi.bean.Good;
 import com.ceshi.bean.Good_searchrecord;
 import com.ceshi.bean.Me_address;
+import com.ceshi.bean.Me_message;
 import com.ceshi.bean.Member;
 import com.ceshi.bean.Msg;
 import com.ceshi.bean.Myorder;
@@ -415,6 +416,28 @@ public class FrontDeskIndexController {
 				return Msg.fail().add("msg", "更改失败");
 			}
 				
+		}else {
+			return Msg.fail().add("msg", "没有登录！");
+		}
+
+	}
+	
+	
+	
+	
+	/**
+	 *查看个人信息中心的信息
+	 * @return
+	 */
+	@RequestMapping("/frontDesk/personal/getInfCenDet")
+	@ResponseBody
+	public Msg getInfCenDet(@RequestParam("meId") int meId,HttpSession session) {
+		String name = "";
+		name = (String) session.getAttribute("username");
+		if (name!=null&&!name.equals("")) {
+			Me_message m = frontDeskIndexService.getInfCenDet(meId);
+				return Msg.success().add("message", m);
+	
 		}else {
 			return Msg.fail().add("msg", "没有登录！");
 		}

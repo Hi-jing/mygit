@@ -271,6 +271,12 @@ public class FrontDeskIndexService {
 		return i!=0;
 	}
 
+
+	public Me_message getInfCenDet(int meId) {
+		Me_message me_message = me_messageMapper.selectByPrimaryKey(meId);
+		return me_message;
+	}
+
 	
 	
 }

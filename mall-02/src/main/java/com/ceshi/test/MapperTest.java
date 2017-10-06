@@ -106,6 +106,62 @@ public class MapperTest {
 	Me_addressMapper me_addressMapper;
 	
 	
+	/**
+	 * 虚拟添加会员信息
+	 * 1、表的联动：member，me_integral
+	 * 2、member表的变量：姓名、性别、邮箱、注册时间、等级id、忠诚度、昵称
+	 * 
+	 * @throws ParseException
+	 */
+	@Test
+	public void setMember() throws ParseException{
+		/**
+		 * meId、meWxopenid、meQqopenid、meName、meSex、meEmail、meRegister
+		 * meLastlogin、meHeadaddress、meDistrict、meNickname
+		 * mePhone、meBrithday、meLoyalty、mePassword、meIdentity、meLevelid
+		 */
+		int[] ii = {9,10,11,12};
+		for (int i = 0; i < 100; i++) {
+			Random r = new Random(); 
+			Double d = r.nextDouble();
+			String s = d + ""; 
+			s=s.substring(3,ii[r.nextInt(3)]); 
+			String uid = UUID.randomUUID().toString().substring(0, 5);
+			String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(randomDate("2016-01-01", "2017-10-07"));
+			memberMapper.insertSelective(new Member(null, null, null, null, r.nextInt(1)==1?"M":"F", s+uid+"@qq.com", date
+					, null, null, null, uid,
+					getOrderNo(), null, null, "123", null, 1));
+		}
+	}
+	
+	 private static Date randomDate(String beginDate, String endDate) {  
+	        try {  
+	            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");  
+	            Date start = format.parse(beginDate);// 构造开始日期  
+	            Date end = format.parse(endDate);// 构造结束日期  
+	            // getTime()表示返回自 1970 年 1 月 1 日 00:00:00 GMT 以来此 Date 对象表示的毫秒数。  
+	            if (start.getTime() >= end.getTime()) {  
+	                return null;  
+	            }  
+	            long date = random(start.getTime(), end.getTime());  
+	  
+	            return new Date(date);  
+	        } catch (Exception e) {  
+	            e.printStackTrace();  
+	        }  
+	        return null;  
+	    }  
+	  
+	    private static long random(long begin, long end) {  
+	        long rtn = begin + (long) (Math.random() * (end - begin));  
+	        // 如果返回的是开始时间和结束时间，则递归调用本函数查找随机值  
+	        if (rtn == begin || rtn == end) {  
+	            return random(begin, end);  
+	        }  
+	        return rtn;  
+	    } 
+	
+	
 	public List<Date> getBetweenDates(Date start, Date end) {
 	    List<Date> result = new ArrayList<Date>();
 	    Calendar tempStart = Calendar.getInstance();
@@ -315,6 +371,7 @@ public class MapperTest {
 		
 	}
 	
+	//得到手机号码
 	public static  String getOrderNo(){
 	    String orderNo = "" ;
 //	 UUID uuid = UUID.randomUUID();
